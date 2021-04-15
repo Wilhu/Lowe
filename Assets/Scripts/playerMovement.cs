@@ -16,6 +16,7 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private LayerMask platformLayerMask;
     private bool playerIsFacingRight = true;
     private CapsuleCollider2D playerCapsuleCollider;
+    public float useGravity;
 
 
 
@@ -30,11 +31,16 @@ public class playerMovement : MonoBehaviour
     {
         float movement = Input.GetAxis("Horizontal");
         Debug.Log(movementSpeed);
+       
+         
+        playerRigidbody.gravityScale = 0;
+        if (useGravity==0) playerRigidbody.AddForce(Physics.gravity * (playerRigidbody.mass * playerRigidbody.mass));
 
         if(Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0)
         {
             if(playerIsFacingRight==false)
             {
+                FlipPlayer();
                 movementSpeed = movementSpeed / turnRate;
             }
              movementSpeed = Mathf.Lerp(movementSpeed, movementSpeedMax, Input.GetAxis("Horizontal") * Time.deltaTime * acceleration);
@@ -45,6 +51,7 @@ public class playerMovement : MonoBehaviour
         {
             if(playerIsFacingRight==true)
             {
+                FlipPlayer();
                 movementSpeed = movementSpeed / turnRate;
             }
              movementSpeed = Mathf.Lerp(movementSpeed, movementSpeedMax, Input.GetAxis("Horizontal") * Time.deltaTime * -acceleration);
