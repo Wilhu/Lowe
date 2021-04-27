@@ -28,8 +28,13 @@ public class playerMovement : MonoBehaviour
     private CapsuleCollider2D playerCapsuleCollider;
     public float useGravity;
     bool BearCheck = false;
-    public float bearBuffTimer = 5;
+    public float bearBuffDuration = 5;
     public float mayJump = 0;
+    private float jumpCD = 0;
+    public bool bearBuffActive = false;
+    private GameObject[] bearObjects;
+    private bool isJumping = false;
+
 
 
 
@@ -43,19 +48,70 @@ public class playerMovement : MonoBehaviour
         humanAcceleration = acceleration;
         humanDeceleration = deceleration;
         humanTurnRate = turnRate;
+        bearObjects = GameObject.FindGameObjectsWithTag("Bear");
     }
 
     void FixedUpdate()
     {
-
-        float movement = Input.GetAxis("Horizontal");
         mayJump += Time.deltaTime;
-        //Debug.Log(mayJump);
-       
-         
-        playerRigidbody.gravityScale = 0;
-        if (useGravity==0) playerRigidbody.AddForce(Physics.gravity * (playerRigidbody.mass * playerRigidbody.mass));
+        jumpCD -= Time.deltaTime;
 
+        //Debug.Log("mayJump: " + mayJump);
+        //Debug.Log("jumpCD: " + jumpCD);
+        Jump();
+        MovePlayer();
+
+        playerRigidbody.gravityScale = 0;
+        if (useGravity==0 && mayJump > 0.1) playerRigidbody.AddForce(Physics.gravity * (playerRigidbody.mass * playerRigidbody.mass));
+
+        if(BearCheck==true && Input.GetButton("Fire1"))
+        {
+
+            Debug.Log("karhu");
+            StartCoroutine(BearBuff());
+        }
+    }
+
+
+    private void Update() {
+        BearObjects();
+    }
+    private void Jump()
+    {
+        if(mayJump < 0.1 || IsGrounded())
+        {
+
+            if(jumpCD < 0 && Input.GetButton("Jump"))
+            {
+                Debug.Log("Jumped");
+                jumpCD = 0.5f;
+                playerRigidbody.velocity = Vector3.zero;
+                playerRigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+
+            }
+        }
+        if(IsGrounded())
+        {
+            mayJump = 0;
+        }
+        if(playerRigidbody.velocity.y > 0)
+        {
+            isJumping=true;
+            //Debug.Log("ylös");
+        }
+        else{
+            isJumping=false;
+            //Debug.Log("alas");
+        }
+    }
+
+    private void SlopeCheck()
+    {
+        //RaycastHit2D slopeRay = Physics2D.CapsuleCast(playerCapsuleCollider.bounds.center,)
+    }
+    private void MovePlayer()
+    {
+        float movement = Input.GetAxis("Horizontal");
         if(Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0)
         {
             if(playerIsFacingRight==false)
@@ -85,69 +141,7 @@ public class playerMovement : MonoBehaviour
             // x = Mathf.Lerp(x, 0, Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed);
             //Debug.Log("Standing");
         }
-
-        //Debug.Log(movement);
-
         transform.position = transform.position + new Vector3(movement, 0, 0) * movementSpeed * Time.deltaTime;
-
-        if(BearCheck==true && Input.GetButton("Fire1"))
-        {
-            Debug.Log("karhu");
-            StartCoroutine(BearBuff());
-        }
-/*
-         if(Input.GetButtonDown("Jump"))
-        {
-            if(IsGrounded())
-            {
-            playerRigidbody.velocity = Vector3.zero;
-            playerRigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-            }
-
-        }
-        
-        if(IsGrounded())
-        {
-            mayJump = 0;
-        }
-*/
-
-    }
-
-
-    private void Update() {
-
-        //float movement = Input.GetAxis("Horizontal");
-        //Debug.Log(mayJump);
-         if(/*mayJump > 0.5 ||*/ IsGrounded())
-         {
-          if(Input.GetButtonDown("Jump"))
-          {
-              mayJump = 0;
-              //Debug.Log(IsGrounded());
-              //Debug.Log("Jump");
-              //Debug.Log(mayJump);
-            playerRigidbody.velocity = Vector3.zero;
-            playerRigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-
-          }
-         }
-        if(IsGrounded())
-        {
-            mayJump = 0;
-        }
-    }
-
-    private void SlopeCheck()
-    {
-        //RaycastHit2D slopeRay = Physics2D.CapsuleCast(playerCapsuleCollider.bounds.center,)
-    }
-    private void MovePlayer()
-    {
-        float movement = Input.GetAxis("Horizontal");
-        //Debug.Log(movement);
-
-        transform.position += new Vector3(movement,0,0) * Time.deltaTime * movementSpeed;
     }
 
     private bool IsGrounded()
@@ -167,7 +161,7 @@ public class playerMovement : MonoBehaviour
         Debug.DrawRay(playerBoxCollider.bounds.center + new Vector3(playerBoxCollider.bounds.extents.x, 0), Vector2.down * (playerBoxCollider.bounds.extents.y + extraHeight), rayColor);
         Debug.DrawRay(playerBoxCollider.bounds.center - new Vector3(playerBoxCollider.bounds.extents.x, 0), Vector2.down * (playerBoxCollider.bounds.extents.y + extraHeight), rayColor);
         Debug.DrawRay(playerBoxCollider.bounds.center - new Vector3(playerBoxCollider.bounds.extents.x, playerBoxCollider.bounds.extents.y + extraHeight), Vector2.right * (playerBoxCollider.bounds.size.x), rayColor);
-      //  Debug.Log(raycastHit.collider);
+        //Debug.Log(raycastHit.collider);
         return raycastHit.collider != null;
     }
 
@@ -201,13 +195,15 @@ public class playerMovement : MonoBehaviour
     IEnumerator BearBuff()
     {
         Debug.Log("Bear buff");
+        bearBuffActive = true;
         movementSpeedMax = bearMovementSpeedMax;
         jumpForce = bearJumpForce;
         acceleration = bearAcceleration;
         deceleration = bearDeceleration;
         turnRate = bearTurnRate;
 
-        yield return new WaitForSeconds(bearBuffTimer);
+        yield return new WaitForSeconds(bearBuffDuration);
+        bearBuffActive = false;
         movementSpeedMax = humanMovementSpeedMax;
         jumpForce = humanJumpForce;
         acceleration = humanAcceleration;
@@ -215,6 +211,23 @@ public class playerMovement : MonoBehaviour
         turnRate = humanTurnRate;
 
         Debug.Log("Bear buff finished");
+    }
+    private void BearObjects()
+    {
+        if(bearBuffActive==true)
+        {
+            foreach (GameObject go in bearObjects)
+            {
+                go.SetActive(false);
+            }
+        }
+        else
+        {
+            foreach (GameObject go in bearObjects)
+            {
+                go.SetActive(true);
+            }
+        }
     }
 
     
