@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Ground
   - Bear
-  - waypoint
+  - PeikkoTurnPoint
   layers:
   - Default
   - TransparentFX
@@ -15,7 +15,7 @@ TagManager:
   - Water
   - UI
   - Platform
-  - WayPoint
+  - Player
   - 
   - 
   - 
