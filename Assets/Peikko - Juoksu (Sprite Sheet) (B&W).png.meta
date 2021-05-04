@@ -1,0 +1,408 @@
+fileFormatVersion: 2
+guid: 7e0474b1a66d8b445abd95b8eaa8b01c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4824938626477562720
+    second: Peikko - Juoksu (Sprite Sheet) (B&W)_0
+  - first:
+      213: -516013912005303164
+    second: Peikko - Juoksu (Sprite Sheet) (B&W)_1
+  - first:
+      213: -103079521140613521
+    second: Peikko - Juoksu (Sprite Sheet) (B&W)_2
+  - first:
+      213: -8581352553042759748
+    second: Peikko - Juoksu (Sprite Sheet) (B&W)_3
+  - first:
+      213: -8967731907456772232
+    second: Peikko - Juoksu (Sprite Sheet) (B&W)_4
+  - first:
+      213: 6016397908896192096
+    second: Peikko - Juoksu (Sprite Sheet) (B&W)_5
+  - first:
+      213: -6719284499112010386
+    second: Peikko - Juoksu (Sprite Sheet) (B&W)_6
+  - first:
+      213: 1204211650005224670
+    second: Peikko - Juoksu (Sprite Sheet) (B&W)_7
+  - first:
+      213: -3756389830739148282
+    second: Peikko - Juoksu (Sprite Sheet) (B&W)_8
+  - first:
+      213: -4654588588384189499
+    second: Peikko - Juoksu (Sprite Sheet) (B&W)_9
+  - first:
+      213: -6436410421043816262
+    second: Peikko - Juoksu (Sprite Sheet) (B&W)_10
+  - first:
+      213: -235388886376188097
+    second: Peikko - Juoksu (Sprite Sheet) (B&W)_11
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Peikko - Juoksu (Sprite Sheet) (B&W)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 387
+        width: 287.33334
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a46eb102ef5a0db0800000000000000
+      internalID: -4824938626477562720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Peikko - Juoksu (Sprite Sheet) (B&W)_1
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 387
+        width: 287.33334
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 484a3cbb410c6d8f0800000000000000
+      internalID: -516013912005303164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Peikko - Juoksu (Sprite Sheet) (B&W)_2
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 387
+        width: 287.33334
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6edbceb8b9c19ef0800000000000000
+      internalID: -103079521140613521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Peikko - Juoksu (Sprite Sheet) (B&W)_3
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 387
+        width: 287.33334
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbfae77a159e8e880800000000000000
+      internalID: -8581352553042759748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Peikko - Juoksu (Sprite Sheet) (B&W)_4
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 387
+        width: 287.33334
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8775a1fd7573c8380800000000000000
+      internalID: -8967731907456772232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Peikko - Juoksu (Sprite Sheet) (B&W)_5
+      rect:
+        serializedVersion: 2
+        x: 1435
+        y: 387
+        width: 287.33334
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 066192b950a8e7350800000000000000
+      internalID: 6016397908896192096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Peikko - Juoksu (Sprite Sheet) (B&W)_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 287.33334
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6dd3ad295e40c2a0800000000000000
+      internalID: -6719284499112010386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Peikko - Juoksu (Sprite Sheet) (B&W)_7
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 0
+        width: 287.33334
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edcc2f09d1836b010800000000000000
+      internalID: 1204211650005224670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Peikko - Juoksu (Sprite Sheet) (B&W)_8
+      rect:
+        serializedVersion: 2
+        x: 574
+        y: 0
+        width: 287.33334
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60247e4e95f9edbc0800000000000000
+      internalID: -3756389830739148282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Peikko - Juoksu (Sprite Sheet) (B&W)_9
+      rect:
+        serializedVersion: 2
+        x: 861
+        y: 0
+        width: 287.33334
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c306c50754976fb0800000000000000
+      internalID: -4654588588384189499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Peikko - Juoksu (Sprite Sheet) (B&W)_10
+      rect:
+        serializedVersion: 2
+        x: 1148
+        y: 0
+        width: 287.33334
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab89f09d2d64da6a0800000000000000
+      internalID: -6436410421043816262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Peikko - Juoksu (Sprite Sheet) (B&W)_11
+      rect:
+        serializedVersion: 2
+        x: 1435
+        y: 0
+        width: 287.33334
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f37f8731e0bbbbcf0800000000000000
+      internalID: -235388886376188097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
