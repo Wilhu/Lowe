@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Bear
   - PeikkoTurnPoint
+  - Enemy
   layers:
   - Default
   - TransparentFX
