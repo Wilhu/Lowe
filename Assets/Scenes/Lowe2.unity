@@ -326,6 +326,7 @@ MonoBehaviour:
   attackCDp: 0
   dashPower: 0
   gravityOffTime: 0
+  dashtime: 0
 --- !u!50 &122737793
 Rigidbody2D:
   serializedVersion: 4
@@ -890,6 +891,7 @@ GameObject:
   - component: {fileID: 261965328}
   - component: {fileID: 261965327}
   - component: {fileID: 261965329}
+  - component: {fileID: 261965332}
   m_Layer: 0
   m_Name: PeikkoJuokseva
   m_TagString: Enemy
@@ -1024,6 +1026,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &261965332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 261965326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3af06331b14d7c4e8f0e722c5ce0831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
 --- !u!1 &351256926
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,6 +1290,7 @@ GameObject:
   - component: {fileID: 527998929}
   - component: {fileID: 527998928}
   - component: {fileID: 527998931}
+  - component: {fileID: 527998932}
   m_Layer: 0
   m_Name: "PeikkoKivitt\xE4j\xE4"
   m_TagString: Enemy
@@ -1355,7 +1371,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527998927}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.76, y: 21.84, z: 0}
+  m_LocalPosition: {x: -9.76, y: 23.91, z: 0}
   m_LocalScale: {x: 2, y: 4, z: 1}
   m_Children:
   - {fileID: 590951962}
@@ -1388,6 +1404,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &527998932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527998927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3af06331b14d7c4e8f0e722c5ce0831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1
 --- !u!1 &539187722
 GameObject:
   m_ObjectHideFlags: 0
@@ -2016,6 +2045,7 @@ MonoBehaviour:
   attackCDp: 0
   dashPower: 0
   gravityOffTime: 0
+  dashtime: 0
 --- !u!50 &891046802
 Rigidbody2D:
   serializedVersion: 4
@@ -3432,7 +3462,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1766532063}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.6, y: 18.6, z: 2.4024746}
+  m_LocalPosition: {x: -7.6, y: 20.26, z: 2.4024746}
   m_LocalScale: {x: 17.66, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1766009904}
@@ -3609,6 +3639,7 @@ MonoBehaviour:
   attackCDp: 0
   dashPower: 0
   gravityOffTime: 0
+  dashtime: 0
 --- !u!50 &1857614869
 Rigidbody2D:
   serializedVersion: 4
@@ -4148,7 +4179,7 @@ GameObject:
   - component: {fileID: 2022397693}
   - component: {fileID: 2022397692}
   - component: {fileID: 2022397691}
-  - component: {fileID: 2022397690}
+  - component: {fileID: 2022397696}
   m_Layer: 7
   m_Name: player (3)
   m_TagString: Player
@@ -4156,22 +4187,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!70 &2022397690
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2022397689}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 4.92, y: 10.81}
-  m_Direction: 0
 --- !u!61 &2022397691
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4229,6 +4244,7 @@ MonoBehaviour:
   attackCDp: 3
   dashPower: 20
   gravityOffTime: 3
+  dashtime: 1
 --- !u!50 &2022397693
 Rigidbody2D:
   serializedVersion: 4
@@ -4316,6 +4332,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2022397696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022397689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4940b385d54c7a4eaaa1bbbff016f3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 3
 --- !u!1 &2125944768
 GameObject:
   m_ObjectHideFlags: 0

@@ -39,7 +39,9 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private float attackCDp;
     [SerializeField] private float dashPower;
     [SerializeField] private float gravityOffTime;
-
+    [SerializeField] private float dashtime;
+    PlayerHealth m_health;
+    [SerializeField] private float knockbackforce;
 
 
 
@@ -48,6 +50,7 @@ public class playerMovement : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerBoxCollider = GetComponent<BoxCollider2D>();
         playerCapsuleCollider = GetComponent<CapsuleCollider2D>();
+        m_health = GetComponent<PlayerHealth>();
         humanMovementSpeedMax = movementSpeedMax;
         humanJumpForce = jumpForce;
         humanAcceleration = acceleration;
@@ -103,7 +106,7 @@ public class playerMovement : MonoBehaviour
 
             if(jumpCD < 0 && Input.GetButton("Jump"))
             {
-                //Debug.Log("Jumped");
+                Debug.Log("Jumped");
                 jumpCD = 0.5f;
                 playerRigidbody.velocity = Vector3.zero;
                 playerRigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
@@ -164,6 +167,7 @@ public class playerMovement : MonoBehaviour
             //Debug.Log("Standing");
         }
         transform.position = transform.position + new Vector3(movement, 0, 0) * movementSpeed * Time.deltaTime;
+        //playerRigidbody.MovePosition(transform.position + new Vector3(movement, 0, 0) * movementSpeed * Time.deltaTime);
     }
 
     private bool IsGrounded()
@@ -255,10 +259,10 @@ public class playerMovement : MonoBehaviour
     {
         if(attackCD<=0)
         {
-
+        //transform.position = Vector2.Lerp(transform.position, transform.position + new Vector3(attackDirection,0), dashtime * Time.deltaTime);
         playerRigidbody.velocity = Vector2.zero;
         playerRigidbody.AddForce(new Vector2(attackDirection*dashPower,0),ForceMode2D.Impulse);
-        StartCoroutine(GravityOff());
+        //StartCoroutine(GravityOff());
         attackCD = attackCDp;
         }
        /* Collider2D hitColliders = Physics2D.OverlapCircle(transform.position + new Vector3(attackDirection,0,0),10);
@@ -271,7 +275,8 @@ public class playerMovement : MonoBehaviour
                 if(res.tag == "Enemy")
                 {
                     Debug.Log("jee vihu");
-                    //Deal damage
+                    EnemyHealth m_enemyhealth = res.GetComponent<EnemyHealth>();
+                    m_enemyhealth.eHealth = m_enemyhealth.eHealth-1;
                 }
                 else
                 {
@@ -289,6 +294,18 @@ public class playerMovement : MonoBehaviour
         useGravity=1;
         yield return new WaitForSeconds(gravityOffTime);
         useGravity=0;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(other.gameObject.tag == "Enemy")
+        {
+            //playerRigidbody.AddForce(new Vector2((other.gameObject.transform.position.x-transform.position.x)*100,(other.gameObject.transform.position.y-transform.position.y)*100),ForceMode2D.Impulse);
+            playerRigidbody.AddForce(new Vector2((transform.position.x-other.gameObject.transform.position.x)*knockbackforce,(transform.position.y-other.gameObject.transform.position.y)*knockbackforce),ForceMode2D.Impulse);
+
+           // Debug.Log(other.gameObject.transform.position.x-transform.position.x);
+           // Debug.Log(other.gameObject.transform.position.y-transform.position.y);
+            m_health.pHealth= m_health.pHealth-1;
+        }
     }
     
 }  
