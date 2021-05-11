@@ -5,17 +5,19 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - Bear
+  - Enemy
   - PeikkoTurnPoint
+  - stone
+  - Bear
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - Platform
-  - Player
+  - 
+  - 
   - 
   - 
   - 

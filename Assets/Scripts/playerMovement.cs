@@ -26,7 +26,7 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private LayerMask platformLayerMask;
     private bool playerIsFacingRight = true;
     private CapsuleCollider2D playerCapsuleCollider;
-    public float useGravity;
+    private float useGravity;
     bool BearCheck = false;
     public float bearBuffDuration = 5;
     public float mayJump = 0;
@@ -34,6 +34,14 @@ public class playerMovement : MonoBehaviour
     public bool bearBuffActive = false;
     private GameObject[] bearObjects;
     private bool isJumping = false;
+    private int attackDirection;
+    private float attackCD=0;
+    [SerializeField] private float attackCDp;
+    [SerializeField] private float dashPower;
+    [SerializeField] private float gravityOffTime;
+    [SerializeField] private float dashtime;
+    PlayerHealth m_health;
+    [SerializeField] private float knockbackforce;
 
 
 
@@ -43,6 +51,7 @@ public class playerMovement : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerBoxCollider = GetComponent<BoxCollider2D>();
         playerCapsuleCollider = GetComponent<CapsuleCollider2D>();
+        m_health = GetComponent<PlayerHealth>();
         humanMovementSpeedMax = movementSpeedMax;
         humanJumpForce = jumpForce;
         humanAcceleration = acceleration;
@@ -55,6 +64,7 @@ public class playerMovement : MonoBehaviour
     {
         mayJump += Time.deltaTime;
         jumpCD -= Time.deltaTime;
+        attackCD -= Time.deltaTime;
 
         //Debug.Log("mayJump: " + mayJump);
         //Debug.Log("jumpCD: " + jumpCD);
@@ -62,13 +72,17 @@ public class playerMovement : MonoBehaviour
         MovePlayer();
 
         playerRigidbody.gravityScale = 0;
-        if (useGravity==0 && mayJump > 0.1) playerRigidbody.AddForce(Physics.gravity * (playerRigidbody.mass * playerRigidbody.mass));
+        if (useGravity==0/* && mayJump > 0.1*/) playerRigidbody.AddForce(Physics.gravity * (playerRigidbody.mass * playerRigidbody.mass));
 
         if(BearCheck==true && Input.GetButton("Fire1"))
         {
 
             Debug.Log("karhu");
             StartCoroutine(BearBuff());
+        }
+        if(/*bearBuffActive && */Input.GetButton("Fire2"))
+        {
+            BearAttack();
         }
     }
 
@@ -78,12 +92,22 @@ public class playerMovement : MonoBehaviour
     }
     private void Jump()
     {
+
+        if(!IsGrounded() && mayJump < 0.1)
+        {
+           // useGravity=1;
+           // Debug.Log("ay");
+        }
+        else{
+           // useGravity=0;
+        }
+
         if(mayJump < 0.1 || IsGrounded())
         {
 
             if(jumpCD < 0 && Input.GetButton("Jump"))
             {
-                Debug.Log("Jumped");
+                //Debug.Log("Jumped");
                 jumpCD = 0.5f;
                 playerRigidbody.velocity = Vector3.zero;
                 playerRigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
@@ -117,6 +141,7 @@ public class playerMovement : MonoBehaviour
             if(playerIsFacingRight==false)
             {
                 FlipPlayer();
+                attackDirection = 10;
                 movementSpeed = movementSpeed / turnRate;
             }
              movementSpeed = Mathf.Lerp(movementSpeed, movementSpeedMax, Input.GetAxis("Horizontal") * Time.deltaTime * acceleration);
@@ -128,6 +153,7 @@ public class playerMovement : MonoBehaviour
             if(playerIsFacingRight==true)
             {
                 FlipPlayer();
+                attackDirection = -10;
                 movementSpeed = movementSpeed / turnRate;
             }
              movementSpeed = Mathf.Lerp(movementSpeed, movementSpeedMax, Input.GetAxis("Horizontal") * Time.deltaTime * -acceleration);
@@ -142,6 +168,7 @@ public class playerMovement : MonoBehaviour
             //Debug.Log("Standing");
         }
         transform.position = transform.position + new Vector3(movement, 0, 0) * movementSpeed * Time.deltaTime;
+        //playerRigidbody.MovePosition(transform.position + new Vector3(movement, 0, 0) * movementSpeed * Time.deltaTime);
     }
 
     private bool IsGrounded()
@@ -194,7 +221,7 @@ public class playerMovement : MonoBehaviour
 
     IEnumerator BearBuff()
     {
-        Debug.Log("Bear buff");
+        //Debug.Log("Bear buff"); Karhu päälle
         bearBuffActive = true;
         movementSpeedMax = bearMovementSpeedMax;
         jumpForce = bearJumpForce;
@@ -203,14 +230,13 @@ public class playerMovement : MonoBehaviour
         turnRate = bearTurnRate;
 
         yield return new WaitForSeconds(bearBuffDuration);
-        bearBuffActive = false;
+        bearBuffActive = false; //Karhu pois päältä
         movementSpeedMax = humanMovementSpeedMax;
         jumpForce = humanJumpForce;
         acceleration = humanAcceleration;
         deceleration = humanDeceleration;
         turnRate = humanTurnRate;
 
-        Debug.Log("Bear buff finished");
     }
     private void BearObjects()
     {
@@ -230,5 +256,57 @@ public class playerMovement : MonoBehaviour
         }
     }
 
+    private void BearAttack()
+    {
+        if(attackCD<=0)
+        {
+        //transform.position = Vector2.Lerp(transform.position, transform.position + new Vector3(attackDirection,0), dashtime * Time.deltaTime);
+        playerRigidbody.velocity = Vector2.zero;
+        playerRigidbody.AddForce(new Vector2(attackDirection*dashPower,100),ForceMode2D.Impulse);
+        //StartCoroutine(GravityOff());
+        attackCD = attackCDp;
+        }
+       /* Collider2D hitColliders = Physics2D.OverlapCircle(transform.position + new Vector3(attackDirection,0,0),10);
+        Debug.Log(hitColliders); */
+            Collider2D[] result = Physics2D.OverlapCircleAll(gameObject.transform.position + new Vector3(attackDirection,0,0), 10f);
+        
+            foreach(Collider2D res in result)
+            {
+                //Debug.Log(res.name);
+                if(res.tag == "Enemy")
+                {
+                    Debug.Log("jee vihu");
+                    EnemyHealth m_enemyhealth = res.GetComponent<EnemyHealth>();
+                    m_enemyhealth.eHealth = m_enemyhealth.eHealth-1;
+                }
+                else
+                {
+                    //Debug.Log("jotain");
+                }
+
+
+            }
+
+
+    }
+
+    private IEnumerator GravityOff()
+    {
+        useGravity=1;
+        yield return new WaitForSeconds(gravityOffTime);
+        useGravity=0;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "stone")
+        {
+            //playerRigidbody.AddForce(new Vector2((other.gameObject.transform.position.x-transform.position.x)*100,(other.gameObject.transform.position.y-transform.position.y)*100),ForceMode2D.Impulse);
+            playerRigidbody.AddForce(new Vector2((transform.position.x-other.gameObject.transform.position.x)*knockbackforce,(transform.position.y-other.gameObject.transform.position.y)*knockbackforce),ForceMode2D.Impulse);
+
+           // Debug.Log(other.gameObject.transform.position.x-transform.position.x);
+           // Debug.Log(other.gameObject.transform.position.y-transform.position.y);
+            m_health.pHealth= m_health.pHealth-1;
+        }
+    }
     
 }  
