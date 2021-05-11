@@ -96,7 +96,7 @@ public class playerMovement : MonoBehaviour
         if(!IsGrounded() && mayJump < 0.1)
         {
            // useGravity=1;
-            Debug.Log("ay");
+           // Debug.Log("ay");
         }
         else{
            // useGravity=0;
@@ -255,8 +255,6 @@ public class playerMovement : MonoBehaviour
             }
         }
     }
-<<<<<<< HEAD
-=======
 
     private void BearAttack()
     {
@@ -264,7 +262,7 @@ public class playerMovement : MonoBehaviour
         {
         //transform.position = Vector2.Lerp(transform.position, transform.position + new Vector3(attackDirection,0), dashtime * Time.deltaTime);
         playerRigidbody.velocity = Vector2.zero;
-        playerRigidbody.AddForce(new Vector2(attackDirection*dashPower,0),ForceMode2D.Impulse);
+        playerRigidbody.AddForce(new Vector2(attackDirection*dashPower,100),ForceMode2D.Impulse);
         //StartCoroutine(GravityOff());
         attackCD = attackCDp;
         }
@@ -300,7 +298,7 @@ public class playerMovement : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if(other.gameObject.tag == "Enemy")
+        if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "stone")
         {
             //playerRigidbody.AddForce(new Vector2((other.gameObject.transform.position.x-transform.position.x)*100,(other.gameObject.transform.position.y-transform.position.y)*100),ForceMode2D.Impulse);
             playerRigidbody.AddForce(new Vector2((transform.position.x-other.gameObject.transform.position.x)*knockbackforce,(transform.position.y-other.gameObject.transform.position.y)*knockbackforce),ForceMode2D.Impulse);
@@ -310,6 +308,5 @@ public class playerMovement : MonoBehaviour
             m_health.pHealth= m_health.pHealth-1;
         }
     }
->>>>>>> ed1b02a4dc6249e881a148f341a8dc2cfd7341ad
     
 }  
