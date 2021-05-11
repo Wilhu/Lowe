@@ -38,6 +38,7 @@ public class playerMovement : MonoBehaviour
 
 
 
+
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
@@ -83,7 +84,7 @@ public class playerMovement : MonoBehaviour
 
             if(jumpCD < 0 && Input.GetButton("Jump"))
             {
-                Debug.Log("Jumped");
+                //Debug.Log("Jumped");
                 jumpCD = 0.5f;
                 playerRigidbody.velocity = Vector3.zero;
                 playerRigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
@@ -229,6 +230,5 @@ public class playerMovement : MonoBehaviour
             }
         }
     }
-
     
 }  
