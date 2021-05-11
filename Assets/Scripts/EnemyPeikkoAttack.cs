@@ -7,19 +7,35 @@ public class EnemyPeikkoAttack : MonoBehaviour
     public float viewDistance;
     private bool enemyFacingLeft = true;
     [SerializeField]
-    private Object stone;
+    private Rigidbody2D stone;
+    [SerializeField]
+    private Transform player;
+    [SerializeField]
+    private float attackCooldown;
+    private float attackCooldownd;
+    [SerializeField]
+    private float stoneSpeed;
 
+
+
+private void Start() {
+    attackCooldownd = attackCooldown;
+    attackCooldown = 0;
+}
 private void Update()
 {
+    attackCooldown -= Time.deltaTime;
     if(PlayerDetectedLeft())
-    {
-        Instantiate(stone, new Vector3(-1f,1f,0),Quaternion.identity);
-        
+    {   
         if(!enemyFacingLeft)
         {
             FlipEnemy();
         }
-        Debug.Log("player detected left");
+        if(attackCooldown<=0)
+        {
+            StartCoroutine("AttackLeft");
+        }
+        //Debug.Log("player detected left");
     }
     if(PlayerDetectedRight())
     {
@@ -27,7 +43,11 @@ private void Update()
         {
             FlipEnemy();
         }
-        Debug.Log(("player detected right"));
+        if(attackCooldown<=0)
+        {
+            StartCoroutine("AttackRight");
+        }
+        //Debug.Log(("player detected right"));
     }
 }
 
@@ -52,6 +72,29 @@ private void Update()
 
         transform.localScale = playerScale;
 
+    }
+
+    private IEnumerator AttackLeft()
+    {
+        attackCooldown = attackCooldownd;
+        Rigidbody2D stoneclone;
+        stoneclone = Instantiate(stone, stone.transform.position,stone.transform.rotation);
+        stoneclone.gameObject.SetActive(true);
+        stoneclone.velocity = transform.TransformDirection(new Vector3(-1*stoneSpeed, 4f,0));
+        yield return new WaitForSeconds(0.05f);
+        stoneclone.gameObject.AddComponent<CircleCollider2D>();
+        yield return new WaitForSeconds(5f);
+    }
+
+    private IEnumerator AttackRight()
+    {
+        attackCooldown = attackCooldownd;
+        Rigidbody2D stoneclone;
+        stoneclone = Instantiate(stone, stone.transform.position,stone.transform.rotation);
+        stoneclone.gameObject.SetActive(true);
+        stoneclone.velocity = transform.TransformDirection(new Vector3(1*stoneSpeed, 4f,0));
+        yield return new WaitForSeconds(0.05f);
+        stoneclone.gameObject.AddComponent<CircleCollider2D>();
     }
 
 }
