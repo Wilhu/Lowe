@@ -25,7 +25,6 @@ public class playerMovement : MonoBehaviour
     private BoxCollider2D playerBoxCollider;
     [SerializeField] private LayerMask platformLayerMask;
     private bool playerIsFacingRight = true;
-    private CapsuleCollider2D playerCapsuleCollider;
     private float useGravity;
     bool BearCheck = false;
     public float bearBuffDuration = 5;
@@ -46,11 +45,11 @@ public class playerMovement : MonoBehaviour
 
 
 
+
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerBoxCollider = GetComponent<BoxCollider2D>();
-        playerCapsuleCollider = GetComponent<CapsuleCollider2D>();
         m_health = GetComponent<PlayerHealth>();
         humanMovementSpeedMax = movementSpeedMax;
         humanJumpForce = jumpForce;
@@ -80,7 +79,7 @@ public class playerMovement : MonoBehaviour
             Debug.Log("karhu");
             StartCoroutine(BearBuff());
         }
-        if(/*bearBuffActive && */Input.GetButton("Fire2"))
+        if(bearBuffActive && Input.GetButton("Fire2"))
         {
             BearAttack();
         }
@@ -128,11 +127,6 @@ public class playerMovement : MonoBehaviour
             isJumping=false;
             //Debug.Log("alas");
         }
-    }
-
-    private void SlopeCheck()
-    {
-        //RaycastHit2D slopeRay = Physics2D.CapsuleCast(playerCapsuleCollider.bounds.center,)
     }
     private void MovePlayer()
     {
@@ -186,9 +180,9 @@ public class playerMovement : MonoBehaviour
             rayColor = Color.red;
         }
 
-        Debug.DrawRay(playerBoxCollider.bounds.center + new Vector3(playerBoxCollider.bounds.extents.x, 0), Vector2.down * (playerBoxCollider.bounds.extents.y + extraHeight), rayColor);
-        Debug.DrawRay(playerBoxCollider.bounds.center - new Vector3(playerBoxCollider.bounds.extents.x, 0), Vector2.down * (playerBoxCollider.bounds.extents.y + extraHeight), rayColor);
-        Debug.DrawRay(playerBoxCollider.bounds.center - new Vector3(playerBoxCollider.bounds.extents.x, playerBoxCollider.bounds.extents.y + extraHeight), Vector2.right * (playerBoxCollider.bounds.size.x), rayColor);
+        //Debug.DrawRay(playerBoxCollider.bounds.center + new Vector3(playerBoxCollider.bounds.extents.x, 0), Vector2.down * (playerBoxCollider.bounds.extents.y + extraHeight), rayColor);
+        //Debug.DrawRay(playerBoxCollider.bounds.center - new Vector3(playerBoxCollider.bounds.extents.x, 0), Vector2.down * (playerBoxCollider.bounds.extents.y + extraHeight), rayColor);
+        //Debug.DrawRay(playerBoxCollider.bounds.center - new Vector3(playerBoxCollider.bounds.extents.x, playerBoxCollider.bounds.extents.y + extraHeight), Vector2.right * (playerBoxCollider.bounds.size.x), rayColor);
         //Debug.Log(raycastHit.collider);
         return raycastHit.collider != null;
     }
@@ -318,6 +312,5 @@ public class playerMovement : MonoBehaviour
                 canplaylandingsound = false;
             }
         }
-    }
-    
+    } 
 }  
