@@ -43,6 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9214347549963983012}
   - component: {fileID: 891791569804663908}
+  - component: {fileID: 3061848161335483163}
   m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
@@ -75,7 +76,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: -1.0792494, y: -0.35840908}
   m_SpriteTilingProperty:
@@ -90,6 +91,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.661891, y: 0.28318185}
   m_EdgeRadius: 0
+--- !u!251 &3061848161335483163
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292179448803559613}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &3690849009910281317
 GameObject:
   m_ObjectHideFlags: 0
@@ -100,6 +120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1521747554335948205}
   - component: {fileID: 8750528728002081299}
+  - component: {fileID: 6704131907644292969}
   m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
@@ -132,7 +153,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: -0.49667788, y: 0.39886585}
   m_SpriteTilingProperty:
@@ -147,6 +168,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.9933558, y: 0.2022683}
   m_EdgeRadius: 0
+--- !u!251 &6704131907644292969
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3690849009910281317}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &8314516919823260796
 GameObject:
   m_ObjectHideFlags: 0
