@@ -108,6 +108,7 @@ public class playerMovement : MonoBehaviour
             if(jumpCD < 0 && Input.GetButton("Jump"))
             {
                 //Debug.Log("Jumped");
+                SoundManager.PlaySound("Jump");
                 jumpCD = 0.5f;
                 playerRigidbody.velocity = Vector3.zero;
                 playerRigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
@@ -260,15 +261,12 @@ public class playerMovement : MonoBehaviour
     {
         if(attackCD<=0)
         {
+        SoundManager.PlaySound("bearClaw");
         //transform.position = Vector2.Lerp(transform.position, transform.position + new Vector3(attackDirection,0), dashtime * Time.deltaTime);
         playerRigidbody.velocity = Vector2.zero;
         playerRigidbody.AddForce(new Vector2(attackDirection*dashPower,100),ForceMode2D.Impulse);
         //StartCoroutine(GravityOff());
-        attackCD = attackCDp;
-        }
-       /* Collider2D hitColliders = Physics2D.OverlapCircle(transform.position + new Vector3(attackDirection,0,0),10);
-        Debug.Log(hitColliders); */
-            Collider2D[] result = Physics2D.OverlapCircleAll(gameObject.transform.position + new Vector3(attackDirection,0,0), 10f);
+        Collider2D[] result = Physics2D.OverlapCircleAll(gameObject.transform.position + new Vector3(attackDirection,0,0), 10f);
         
             foreach(Collider2D res in result)
             {
@@ -276,6 +274,7 @@ public class playerMovement : MonoBehaviour
                 if(res.tag == "Enemy")
                 {
                     Debug.Log("jee vihu");
+                    SoundManager.PlaySound("enemyHit");
                     EnemyHealth m_enemyhealth = res.GetComponent<EnemyHealth>();
                     m_enemyhealth.eHealth = m_enemyhealth.eHealth-1;
                 }
@@ -286,8 +285,10 @@ public class playerMovement : MonoBehaviour
 
 
             }
-
-
+        attackCD = attackCDp;
+        }
+       /* Collider2D hitColliders = Physics2D.OverlapCircle(transform.position + new Vector3(attackDirection,0,0),10);
+        Debug.Log(hitColliders); */
     }
 
     private IEnumerator GravityOff()
@@ -298,6 +299,7 @@ public class playerMovement : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
+        bool canplaylandingsound;
         if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "stone")
         {
             //playerRigidbody.AddForce(new Vector2((other.gameObject.transform.position.x-transform.position.x)*100,(other.gameObject.transform.position.y-transform.position.y)*100),ForceMode2D.Impulse);
@@ -306,6 +308,15 @@ public class playerMovement : MonoBehaviour
            // Debug.Log(other.gameObject.transform.position.x-transform.position.x);
            // Debug.Log(other.gameObject.transform.position.y-transform.position.y);
             m_health.pHealth= m_health.pHealth-1;
+        }
+        if(other.gameObject.tag == "Ground" )
+        {
+            canplaylandingsound = true;
+            if(canplaylandingsound = true && !SoundManager.audioSrc.isPlaying && IsGrounded())
+            {
+                SoundManager.PlaySound("Landing");
+                canplaylandingsound = false;
+            }
         }
     }
     
