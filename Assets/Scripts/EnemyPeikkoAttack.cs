@@ -15,23 +15,50 @@ public class EnemyPeikkoAttack : MonoBehaviour
     private float attackCooldownd;
     [SerializeField]
     private float stoneSpeed;
+    [SerializeField]
+    private bool useBush;
+    private bool activePeikko;
+    private bool canAttack;
+    private Rigidbody2D prb; 
+    private SpriteRenderer spriteRenderer;
+
 
 
 
 private void Start() {
+    prb = GetComponent<Rigidbody2D>();
+    spriteRenderer = GetComponent<SpriteRenderer>();
     attackCooldownd = attackCooldown;
     attackCooldown = 0;
+    if (useBush==true)
+    {
+        activePeikko=false;
+        canAttack=false;
+    }
+    else
+    {
+        activePeikko=true;
+        canAttack=true;
+    }
+
+
 }
 private void Update()
 {
     attackCooldown -= Time.deltaTime;
+
     if(PlayerDetectedLeft())
     {   
+        if(activePeikko==false)
+        {
+            Debug.Log("puska");
+            StartCoroutine("BushJump");
+        }
         if(!enemyFacingLeft)
         {
             FlipEnemy();
         }
-        if(attackCooldown<=0)
+        if(attackCooldown<=0 && activePeikko==true && canAttack==true)
         {
             StartCoroutine("AttackLeft");
         }
@@ -39,11 +66,16 @@ private void Update()
     }
     if(PlayerDetectedRight())
     {
+        if(activePeikko==false)
+        {
+            Debug.Log("puska2");
+            StartCoroutine("BushJump");
+        }
         if(enemyFacingLeft)
         {
             FlipEnemy();
         }
-        if(attackCooldown<=0)
+        if(attackCooldown<=0 && activePeikko==true && canAttack==true)
         {
             StartCoroutine("AttackRight");
         }
@@ -83,7 +115,6 @@ private void Update()
         stoneclone.velocity = transform.TransformDirection(new Vector3(-1*stoneSpeed, 4f,0));
         yield return new WaitForSeconds(0.05f);
         stoneclone.gameObject.AddComponent<CircleCollider2D>();
-        yield return new WaitForSeconds(5f);
     }
 
     private IEnumerator AttackRight()
@@ -95,6 +126,16 @@ private void Update()
         stoneclone.velocity = transform.TransformDirection(new Vector3(1*stoneSpeed, 4f,0));
         yield return new WaitForSeconds(0.05f);
         stoneclone.gameObject.AddComponent<CircleCollider2D>();
+    }
+
+    private IEnumerator BushJump()
+    {
+        prb.AddForce(new Vector2(0,150),ForceMode2D.Impulse);
+        activePeikko = true;
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.sortingOrder = 1;
+        yield return new WaitForSeconds(1f);
+        canAttack = true;
     }
 
 }

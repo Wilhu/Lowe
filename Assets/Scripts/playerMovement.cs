@@ -109,7 +109,7 @@ public class playerMovement : MonoBehaviour
                 //Debug.Log("Jumped");
                 SoundManager.PlaySound("Jump");
                 jumpCD = 0.5f;
-                playerRigidbody.velocity = Vector3.zero;
+                playerRigidbody.velocity = new Vector2(0,0); //Vector3.zero;
                 playerRigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
 
             }
@@ -168,8 +168,10 @@ public class playerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        float extraHeight  = 0.05f;
-        RaycastHit2D raycastHit = Physics2D.BoxCast(playerBoxCollider.bounds.center, playerBoxCollider.bounds.size - new Vector3(0.4f,0f,0f), 0f, Vector2.down, extraHeight, platformLayerMask);
+        float extraHeight  = 0.005f;
+        RaycastHit2D raycastHit = Physics2D.BoxCast(playerBoxCollider.bounds.min + new Vector3(playerBoxCollider.bounds.extents.x,0), playerBoxCollider.bounds.size - new Vector3(0.4f,playerBoxCollider.bounds.extents.y*1.95f,0f), 0f, Vector2.down, extraHeight, platformLayerMask);
+        //RaycastHit2D raycastHit = Physics2D.BoxCast(playerBoxCollider.bounds.min + 0.00005f * Vector3.up, playerBoxCollider.bounds.size - new Vector3(0.4f,0f,0f), 0f, Vector2.down, extraHeight, platformLayerMask);
+        //RaycastHit2D raycastHit = Physics2D.BoxCast(playerBoxCollider.bounds.center, playerBoxCollider.bounds.size - new Vector3(0.4f,0f,0f), 0f, Vector2.down, extraHeight, platformLayerMask);
         Color rayColor;
         if (raycastHit.collider != null)
         {
@@ -180,9 +182,10 @@ public class playerMovement : MonoBehaviour
             rayColor = Color.red;
         }
 
-        //Debug.DrawRay(playerBoxCollider.bounds.center + new Vector3(playerBoxCollider.bounds.extents.x, 0), Vector2.down * (playerBoxCollider.bounds.extents.y + extraHeight), rayColor);
-        //Debug.DrawRay(playerBoxCollider.bounds.center - new Vector3(playerBoxCollider.bounds.extents.x, 0), Vector2.down * (playerBoxCollider.bounds.extents.y + extraHeight), rayColor);
-        //Debug.DrawRay(playerBoxCollider.bounds.center - new Vector3(playerBoxCollider.bounds.extents.x, playerBoxCollider.bounds.extents.y + extraHeight), Vector2.right * (playerBoxCollider.bounds.size.x), rayColor);
+        Debug.DrawRay(playerBoxCollider.bounds.min + new Vector3(playerBoxCollider.bounds.extents.x,0) + new Vector3(playerBoxCollider.bounds.extents.x, 0), Vector2.down * (playerBoxCollider.bounds.size - new Vector3(0.4f,playerBoxCollider.bounds.extents.y*1.95f,0f + extraHeight)), rayColor);
+        //Debug.DrawRay(playerBoxCollider.bounds.min + new Vector3(playerBoxCollider.bounds.extents.x,0) - new Vector3(playerBoxCollider.bounds.extents.x, 0), Vector2.down * (playerBoxCollider.bounds.extents.y + extraHeight), rayColor);
+        Debug.DrawRay(playerBoxCollider.bounds.min + new Vector3(playerBoxCollider.bounds.extents.x,0) - new Vector3(playerBoxCollider.bounds.extents.x, 0), Vector2.down * (playerBoxCollider.bounds.size - new Vector3(0.4f,playerBoxCollider.bounds.extents.y*1.95f,0f + extraHeight)), rayColor);
+        Debug.DrawRay(playerBoxCollider.bounds.min/* + new Vector3(playerBoxCollider.bounds.extents.x,0) - new Vector3(playerBoxCollider.bounds.extents.x, playerBoxCollider.bounds.extents.y + extraHeight)*/, Vector2.right * (playerBoxCollider.bounds.size.x), rayColor);
         //Debug.Log(raycastHit.collider);
         return raycastHit.collider != null;
     }
