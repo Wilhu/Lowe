@@ -25,7 +25,6 @@ public class playerMovement : MonoBehaviour
     private BoxCollider2D playerBoxCollider;
     [SerializeField] private LayerMask platformLayerMask;
     private bool playerIsFacingRight = true;
-    private CapsuleCollider2D playerCapsuleCollider;
     private float useGravity;
     bool BearCheck = false;
     public float bearBuffDuration = 5;
@@ -46,11 +45,11 @@ public class playerMovement : MonoBehaviour
 
 
 
+
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerBoxCollider = GetComponent<BoxCollider2D>();
-        playerCapsuleCollider = GetComponent<CapsuleCollider2D>();
         m_health = GetComponent<PlayerHealth>();
         humanMovementSpeedMax = movementSpeedMax;
         humanJumpForce = jumpForce;
@@ -80,7 +79,7 @@ public class playerMovement : MonoBehaviour
             Debug.Log("karhu");
             StartCoroutine(BearBuff());
         }
-        if(/*bearBuffActive && */Input.GetButton("Fire2"))
+        if(bearBuffActive && Input.GetButton("Fire2"))
         {
             BearAttack();
         }
@@ -108,6 +107,7 @@ public class playerMovement : MonoBehaviour
             if(jumpCD < 0 && Input.GetButton("Jump"))
             {
                 //Debug.Log("Jumped");
+                SoundManager.PlaySound("Jump");
                 jumpCD = 0.5f;
                 playerRigidbody.velocity = Vector3.zero;
                 playerRigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
@@ -127,11 +127,6 @@ public class playerMovement : MonoBehaviour
             isJumping=false;
             //Debug.Log("alas");
         }
-    }
-
-    private void SlopeCheck()
-    {
-        //RaycastHit2D slopeRay = Physics2D.CapsuleCast(playerCapsuleCollider.bounds.center,)
     }
     private void MovePlayer()
     {
@@ -185,9 +180,9 @@ public class playerMovement : MonoBehaviour
             rayColor = Color.red;
         }
 
-        Debug.DrawRay(playerBoxCollider.bounds.center + new Vector3(playerBoxCollider.bounds.extents.x, 0), Vector2.down * (playerBoxCollider.bounds.extents.y + extraHeight), rayColor);
-        Debug.DrawRay(playerBoxCollider.bounds.center - new Vector3(playerBoxCollider.bounds.extents.x, 0), Vector2.down * (playerBoxCollider.bounds.extents.y + extraHeight), rayColor);
-        Debug.DrawRay(playerBoxCollider.bounds.center - new Vector3(playerBoxCollider.bounds.extents.x, playerBoxCollider.bounds.extents.y + extraHeight), Vector2.right * (playerBoxCollider.bounds.size.x), rayColor);
+        //Debug.DrawRay(playerBoxCollider.bounds.center + new Vector3(playerBoxCollider.bounds.extents.x, 0), Vector2.down * (playerBoxCollider.bounds.extents.y + extraHeight), rayColor);
+        //Debug.DrawRay(playerBoxCollider.bounds.center - new Vector3(playerBoxCollider.bounds.extents.x, 0), Vector2.down * (playerBoxCollider.bounds.extents.y + extraHeight), rayColor);
+        //Debug.DrawRay(playerBoxCollider.bounds.center - new Vector3(playerBoxCollider.bounds.extents.x, playerBoxCollider.bounds.extents.y + extraHeight), Vector2.right * (playerBoxCollider.bounds.size.x), rayColor);
         //Debug.Log(raycastHit.collider);
         return raycastHit.collider != null;
     }
@@ -260,15 +255,12 @@ public class playerMovement : MonoBehaviour
     {
         if(attackCD<=0)
         {
+        SoundManager.PlaySound("bearClaw");
         //transform.position = Vector2.Lerp(transform.position, transform.position + new Vector3(attackDirection,0), dashtime * Time.deltaTime);
         playerRigidbody.velocity = Vector2.zero;
         playerRigidbody.AddForce(new Vector2(attackDirection*dashPower,100),ForceMode2D.Impulse);
         //StartCoroutine(GravityOff());
-        attackCD = attackCDp;
-        }
-       /* Collider2D hitColliders = Physics2D.OverlapCircle(transform.position + new Vector3(attackDirection,0,0),10);
-        Debug.Log(hitColliders); */
-            Collider2D[] result = Physics2D.OverlapCircleAll(gameObject.transform.position + new Vector3(attackDirection,0,0), 10f);
+        Collider2D[] result = Physics2D.OverlapCircleAll(gameObject.transform.position + new Vector3(attackDirection,0,0), 10f);
         
             foreach(Collider2D res in result)
             {
@@ -276,6 +268,7 @@ public class playerMovement : MonoBehaviour
                 if(res.tag == "Enemy")
                 {
                     Debug.Log("jee vihu");
+                    SoundManager.PlaySound("enemyHit");
                     EnemyHealth m_enemyhealth = res.GetComponent<EnemyHealth>();
                     m_enemyhealth.eHealth = m_enemyhealth.eHealth-1;
                 }
@@ -286,8 +279,10 @@ public class playerMovement : MonoBehaviour
 
 
             }
-
-
+        attackCD = attackCDp;
+        }
+       /* Collider2D hitColliders = Physics2D.OverlapCircle(transform.position + new Vector3(attackDirection,0,0),10);
+        Debug.Log(hitColliders); */
     }
 
     private IEnumerator GravityOff()
@@ -298,6 +293,7 @@ public class playerMovement : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
+        bool canplaylandingsound;
         if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "stone")
         {
             //playerRigidbody.AddForce(new Vector2((other.gameObject.transform.position.x-transform.position.x)*100,(other.gameObject.transform.position.y-transform.position.y)*100),ForceMode2D.Impulse);
@@ -307,6 +303,14 @@ public class playerMovement : MonoBehaviour
            // Debug.Log(other.gameObject.transform.position.y-transform.position.y);
             m_health.pHealth= m_health.pHealth-1;
         }
-    }
-    
+        if(other.gameObject.tag == "Ground" )
+        {
+            canplaylandingsound = true;
+            if(canplaylandingsound = true && !SoundManager.audioSrc.isPlaying && IsGrounded())
+            {
+                SoundManager.PlaySound("Landing");
+                canplaylandingsound = false;
+            }
+        }
+    } 
 }  
