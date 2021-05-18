@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
-{    [SerializeField] private int health = 1;
+{   
+    [SerializeField] private int health = 1;
+    [SerializeField] private int damage;
 
     public int eHealth
     {
@@ -14,6 +16,12 @@ public class EnemyHealth : MonoBehaviour
             Destroy(gameObject);
             }
         }
+    }
+
+    public int enemyDamage
+    {
+        get{return damage;}
+        private set{damage = value;}
     }
 
 

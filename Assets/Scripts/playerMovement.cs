@@ -273,7 +273,7 @@ public class playerMovement : MonoBehaviour
                     Debug.Log("jee vihu");
                     SoundManager.PlaySound("enemyHit");
                     EnemyHealth m_enemyhealth = res.GetComponent<EnemyHealth>();
-                    m_enemyhealth.eHealth = m_enemyhealth.eHealth-1;
+                    m_enemyhealth.eHealth = m_enemyhealth.eHealth-1; 
                 }
                 else
                 {
@@ -304,7 +304,9 @@ public class playerMovement : MonoBehaviour
 
            // Debug.Log(other.gameObject.transform.position.x-transform.position.x);
            // Debug.Log(other.gameObject.transform.position.y-transform.position.y);
-            m_health.pHealth= m_health.pHealth-1;
+            EnemyHealth m_enemyhealth = other.gameObject.GetComponentInParent<EnemyHealth>();
+            m_health.pHealth = m_health.pHealth-m_enemyhealth.enemyDamage;
+
         }
         if(other.gameObject.tag == "Ground" )
         {

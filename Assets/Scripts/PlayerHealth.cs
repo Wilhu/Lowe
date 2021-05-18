@@ -16,9 +16,10 @@ public class PlayerHealth : MonoBehaviour
         get{return health;}
         set{health = value;
         Debug.Log(health);
-        if(health==0)
+        if(health<=0)
         {
             Debug.Log("ded");
+            
         }
         }
     }
