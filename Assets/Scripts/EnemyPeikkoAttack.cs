@@ -51,8 +51,8 @@ private void Update()
     {   
         if(activePeikko==false)
         {
-            Debug.Log("puska");
             StartCoroutine("BushJump");
+            //Debug.Log("puska");
         }
         if(!enemyFacingLeft)
         {
@@ -68,8 +68,8 @@ private void Update()
     {
         if(activePeikko==false)
         {
-            Debug.Log("puska2");
             StartCoroutine("BushJump");
+            //Debug.Log("puska2");
         }
         if(enemyFacingLeft)
         {
@@ -139,5 +139,4 @@ private void Update()
         yield return new WaitForSeconds(1f);
         canAttack = true;
     }
-
 }
