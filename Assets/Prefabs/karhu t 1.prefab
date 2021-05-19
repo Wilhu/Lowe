@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4354942478573949010}
   - component: {fileID: 1879507884233807963}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: karhu t 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4792317538470830277}
   - component: {fileID: 1018720542955169010}
   - component: {fileID: 8586634337137207239}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: bear (1)
   m_TagString: Bear
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 7565877311339822570}
   - component: {fileID: 4658180927940534300}
   - component: {fileID: 8160595709860338866}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
