@@ -41,6 +41,9 @@ public class playerMovement : MonoBehaviour
     [SerializeField] private float dashtime;
     PlayerHealth m_health;
     [SerializeField] private float knockbackforce;
+    public Animator animator;
+    private SpriteRenderer spriteRenderer;
+    public bool invulnerable = false;
 
 
 
@@ -50,6 +53,7 @@ public class playerMovement : MonoBehaviour
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerBoxCollider = GetComponent<BoxCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         m_health = GetComponent<PlayerHealth>();
         humanMovementSpeedMax = movementSpeedMax;
         humanJumpForce = jumpForce;
@@ -82,6 +86,10 @@ public class playerMovement : MonoBehaviour
         if(bearBuffActive && Input.GetButton("Fire2"))
         {
             BearAttack();
+        }
+        else
+        {
+            animator.SetBool("Attack", false);
         }
     }
 
@@ -130,7 +138,7 @@ public class playerMovement : MonoBehaviour
     }
     private void MovePlayer()
     {
-        float movement = Input.GetAxis("Horizontal");
+        float movement = Input.GetAxisRaw("Horizontal");
         if(Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0)
         {
             if(playerIsFacingRight==false)
@@ -163,6 +171,7 @@ public class playerMovement : MonoBehaviour
             //Debug.Log("Standing");
         }
         transform.position = transform.position + new Vector3(movement, 0, 0) * movementSpeed * Time.deltaTime;
+        animator.SetFloat("Movement Speed", Mathf.Abs(movement));
         //playerRigidbody.MovePosition(transform.position + new Vector3(movement, 0, 0) * movementSpeed * Time.deltaTime);
     }
 
@@ -221,6 +230,7 @@ public class playerMovement : MonoBehaviour
     {
         //Debug.Log("Bear buff"); Karhu päälle
         bearBuffActive = true;
+        animator.SetBool("Bear", true);
         movementSpeedMax = bearMovementSpeedMax;
         jumpForce = bearJumpForce;
         acceleration = bearAcceleration;
@@ -229,6 +239,7 @@ public class playerMovement : MonoBehaviour
 
         yield return new WaitForSeconds(bearBuffDuration);
         bearBuffActive = false; //Karhu pois päältä
+        animator.SetBool("Bear", false);
         movementSpeedMax = humanMovementSpeedMax;
         jumpForce = humanJumpForce;
         acceleration = humanAcceleration;
@@ -261,6 +272,7 @@ public class playerMovement : MonoBehaviour
         SoundManager.PlaySound("bearClaw");
         //transform.position = Vector2.Lerp(transform.position, transform.position + new Vector3(attackDirection,0), dashtime * Time.deltaTime);
         playerRigidbody.velocity = Vector2.zero;
+        animator.SetBool("Attack", true);
         playerRigidbody.AddForce(new Vector2(attackDirection*dashPower,100),ForceMode2D.Impulse);
         //StartCoroutine(GravityOff());
         Collider2D[] result = Physics2D.OverlapCircleAll(gameObject.transform.position + new Vector3(attackDirection,0,0), 10f);
@@ -299,13 +311,17 @@ public class playerMovement : MonoBehaviour
         bool canplaylandingsound;
         if(other.gameObject.tag == "Enemy" || other.gameObject.tag == "stone")
         {
+            if(invulnerable==false)
+            {
             //playerRigidbody.AddForce(new Vector2((other.gameObject.transform.position.x-transform.position.x)*100,(other.gameObject.transform.position.y-transform.position.y)*100),ForceMode2D.Impulse);
             playerRigidbody.AddForce(new Vector2((transform.position.x-other.gameObject.transform.position.x)*knockbackforce,(transform.position.y-other.gameObject.transform.position.y)*knockbackforce),ForceMode2D.Impulse);
-
+            StartCoroutine("DamageFlash");
+            Debug.Log("damaa");
            // Debug.Log(other.gameObject.transform.position.x-transform.position.x);
            // Debug.Log(other.gameObject.transform.position.y-transform.position.y);
             EnemyHealth m_enemyhealth = other.gameObject.GetComponentInParent<EnemyHealth>();
             m_health.pHealth = m_health.pHealth-m_enemyhealth.enemyDamage;
+            }
 
         }
         if(other.gameObject.tag == "Ground" )
@@ -317,6 +333,19 @@ public class playerMovement : MonoBehaviour
                 canplaylandingsound = false;
             }
         }
+    }
+
+    private IEnumerator DamageFlash()
+    {
+        invulnerable = true;
+        for(int i = 0; i < 3; i++)
+        {
+            spriteRenderer.color = new Color(0.8f,0.8f,0.8f,1f);
+            yield return new WaitForSeconds(0.15f);
+            spriteRenderer.color = new Color(1f,1f,1f,1f);
+            yield return new WaitForSeconds(0.15f);
+        }
+        invulnerable = false;
     }
 }
   
