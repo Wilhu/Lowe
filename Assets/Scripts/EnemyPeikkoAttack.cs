@@ -21,6 +21,8 @@ public class EnemyPeikkoAttack : MonoBehaviour
     private bool canAttack;
     private Rigidbody2D prb; 
     private SpriteRenderer spriteRenderer;
+    [SerializeField]
+    private SpriteRenderer bushSpriteRenderer;
 
 
 
@@ -135,7 +137,7 @@ private void Update()
         prb.AddForce(new Vector2(0,150),ForceMode2D.Impulse);
         activePeikko = true;
         yield return new WaitForSeconds(0.1f);
-        spriteRenderer.sortingOrder = 1;
+        spriteRenderer.sortingOrder = bushSpriteRenderer.sortingOrder+1;
         yield return new WaitForSeconds(1f);
         canAttack = true;
     }
