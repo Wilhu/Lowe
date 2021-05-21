@@ -340,7 +340,7 @@ public class playerMovement : MonoBehaviour
         invulnerable = true;
         for(int i = 0; i < 3; i++)
         {
-            spriteRenderer.color = new Color(0.8f,0.8f,0.8f,1f);
+            spriteRenderer.color = new Color(0.7f,0.7f,0.7f,1f);
             yield return new WaitForSeconds(0.15f);
             spriteRenderer.color = new Color(1f,1f,1f,1f);
             yield return new WaitForSeconds(0.15f);

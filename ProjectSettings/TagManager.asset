@@ -9,6 +9,7 @@ TagManager:
   - PeikkoTurnPoint
   - stone
   - Bear
+  - respawn
   layers:
   - Default
   - TransparentFX
