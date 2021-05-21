@@ -17,6 +17,8 @@ public class EnemyPeikkoMovement : MonoBehaviour
     [SerializeField]
     private float viewDistance;
     private bool enemyFacingLeft = true;
+    [SerializeField]
+    private SpriteRenderer bushSpriteRenderer;
 
     private void Start() {
         prb = GetComponent<Rigidbody2D>();
@@ -30,6 +32,7 @@ public class EnemyPeikkoMovement : MonoBehaviour
         else
         {
             activePeikko=true;
+            FlipEnemy();
             state=PeikkoState.Moving;
         }
     }
@@ -92,7 +95,7 @@ public class EnemyPeikkoMovement : MonoBehaviour
         prb.AddForce(new Vector2(0,150),ForceMode2D.Impulse);
         //activePeikko = true;
         yield return new WaitForSeconds(0.1f);
-        spriteRenderer.sortingOrder = spriteRenderer.sortingOrder+1;
+        spriteRenderer.sortingOrder = bushSpriteRenderer.sortingOrder+1;
         yield return new WaitForSeconds(1f);
     }
 

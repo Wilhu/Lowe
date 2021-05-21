@@ -222,6 +222,7 @@ MonoBehaviour:
   attackCooldown: 3
   stoneSpeed: 50
   useBush: 1
+  bushSpriteRenderer: {fileID: 0}
 --- !u!114 &4774011425007838924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,7 +257,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &4774011425007838923
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
