@@ -10,9 +10,10 @@ public class RespawnBox : MonoBehaviour
     private GameObject[] reverse;
     private List<float> respawnpositions;
     //private List<float> sortedRespawnPositions;
-    private int ClosestSpawn = 0;
+    public int ClosestSpawn = 0;
+    public int NextSpawn;
     void Start()
-    {/*
+    {
         respawnpositions = new List<float>();
         respawns = GameObject.FindGameObjectsWithTag("respawn");
         foreach(GameObject respawn in respawns)
@@ -21,33 +22,52 @@ public class RespawnBox : MonoBehaviour
 
             for(int i = 0; i<respawns.Length;i++)
             {
-                if(respawn.transform.position.x<reverse[i].transform.position.x)
+               /* if(respawn.transform.position.x<reverse[i].transform.position.x)
                 {
 
-                }
+                } */
             }
         }
 
-        //reverse = Enumerable.Reverse(respawns).ToArray();
-        for(int i = 0; i<reverse.Length;i++)
+        reverse = Enumerable.Reverse(respawns).ToArray();
+        for(int i = 0; i<respawnpositions.Count;i++)
         {
-            Debug.Log(reverse[i]);
-        }  */
+            Debug.Log(respawnpositions[i]);
+        }  
     }
     void Update()
     {
         transform.position = new Vector3(player.position.x,transform.position.y,0f);
-
-      /*  if(player.transform.position.x > respawnpositions[ClosestSpawn+1])
+        /*if(NextSpawn >= respawnpositions.Count-1)
         {
-            
+            NextSpawn = respawnpositions.Count-1;
+        }
+        else if(NextSpawn < respawnpositions.Count)
+        {
+            NextSpawn = ClosestSpawn + 1;
         } */
+        if(player.transform.position.x > respawnpositions[ClosestSpawn] )
+        {
+            ClosestSpawn++;
+            Debug.Log("++");
+        }
+        if(player.transform.position.x < respawnpositions[ClosestSpawn])
+        {
+            ClosestSpawn--;
+            Debug.Log(respawnpositions.Count-1);
+        }
+        if(ClosestSpawn<0)
+        {
+            ClosestSpawn = 0;
+            Debug.Log("nolla");
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag=="Player")
         {
-            player.position = reverse[ClosestSpawn].transform.position;
+            player.position = respawns[ClosestSpawn].transform.position;
         }
     }
 }
