@@ -335,7 +335,7 @@ public class playerMovement : MonoBehaviour
         }
     }
 
-    private IEnumerator DamageFlash()
+    public IEnumerator DamageFlash()
     {
         invulnerable = true;
         for(int i = 0; i < 3; i++)
