@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -16,10 +17,10 @@ public class PlayerHealth : MonoBehaviour
         get{return health;}
         set{health = value;
         Debug.Log(health);
-        if(health<=0)
+        if(health<1)
         {
             Debug.Log("ded");
-            
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         }
     }
