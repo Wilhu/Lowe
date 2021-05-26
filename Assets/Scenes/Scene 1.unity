@@ -1157,11 +1157,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3567410927672165268, guid: 6c4154a030a56304d9c728e21256220c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 115
+      value: -372.4
       objectReference: {fileID: 0}
     - target: {fileID: 3567410927672165268, guid: 6c4154a030a56304d9c728e21256220c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -369.8
+      value: -356
       objectReference: {fileID: 0}
     - target: {fileID: 3567410927672165268, guid: 6c4154a030a56304d9c728e21256220c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3547,6 +3547,7 @@ MonoBehaviour:
   speed: 10
   useBush: 0
   viewDistance: 0
+  bushSpriteRenderer: {fileID: 0}
 --- !u!50 &994051518
 Rigidbody2D:
   serializedVersion: 4
