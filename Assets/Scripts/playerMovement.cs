@@ -93,7 +93,7 @@ public class playerMovement : MonoBehaviour
         }
         else
         {
-            animator.SetBool("Attack", false);
+            //animator.SetBool("Attack", false);
         }
     }
 
@@ -285,7 +285,7 @@ public class playerMovement : MonoBehaviour
         SoundManager.PlaySound("bearClaw");
         //transform.position = Vector2.Lerp(transform.position, transform.position + new Vector3(attackDirection,0), dashtime * Time.deltaTime);
         playerRigidbody.velocity = Vector2.zero;
-        animator.SetBool("Attack", true);
+        animator.SetTrigger("AttackTrigger");
         playerRigidbody.AddForce(new Vector2(attackDirection*dashPower,100),ForceMode2D.Impulse);
         //StartCoroutine(GravityOff());
         Collider2D[] result = Physics2D.OverlapCircleAll(gameObject.transform.position + new Vector3(attackDirection,0,0), 10f);
