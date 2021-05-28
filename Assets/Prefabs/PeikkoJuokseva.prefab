@@ -184,7 +184,7 @@ MonoBehaviour:
   speed: 10
   useBush: 1
   viewDistance: 15
-  bushSpriteRenderer: {fileID: 0}
+  bushSpriteRenderer: {fileID: 5979057942838722218, guid: 68d19040e4d496e47954ee93aee1983f, type: 3}
 --- !u!114 &80448086777369497
 MonoBehaviour:
   m_ObjectHideFlags: 0

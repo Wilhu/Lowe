@@ -71,6 +71,10 @@ public class playerMovement : MonoBehaviour
 
         //Debug.Log("mayJump: " + mayJump);
         //Debug.Log("jumpCD: " + jumpCD);
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("testi 2 power"))
+        {
+            return;
+        }
         Jump();
         MovePlayer();
 
@@ -89,7 +93,7 @@ public class playerMovement : MonoBehaviour
         }
         else
         {
-            animator.SetBool("Attack", false);
+            //animator.SetBool("Attack", false);
         }
     }
 
@@ -116,6 +120,7 @@ public class playerMovement : MonoBehaviour
             {
                 //Debug.Log("Jumped");
                 SoundManager.PlaySound("Jump");
+                animator.SetTrigger("JumpTrigger");
                 jumpCD = 0.5f;
                 playerRigidbody.velocity = new Vector2(0,0); //Vector3.zero;
                 playerRigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
@@ -125,15 +130,22 @@ public class playerMovement : MonoBehaviour
         if(IsGrounded())
         {
             mayJump = 0;
+
+            animator.SetBool("Fall",false);
         }
-        if(playerRigidbody.velocity.y > 0)
+        if(playerRigidbody.velocity.y > 0.01)
         {
             isJumping=true;
-            //Debug.Log("ylös");
+            Debug.Log("ylös");
         }
-        else{
+        else if(playerRigidbody.velocity.y < 0 && !IsGrounded()) {
             isJumping=false;
-            //Debug.Log("alas");
+            animator.SetBool("Fall",true);
+            Debug.Log("alas");
+        }
+        else
+        {
+            animator.SetBool("Fall",false);
         }
     }
     private void MovePlayer()
@@ -230,6 +242,7 @@ public class playerMovement : MonoBehaviour
     {
         //Debug.Log("Bear buff"); Karhu päälle
         bearBuffActive = true;
+        animator.SetTrigger("BearTrigger");
         animator.SetBool("Bear", true);
         movementSpeedMax = bearMovementSpeedMax;
         jumpForce = bearJumpForce;
@@ -272,7 +285,7 @@ public class playerMovement : MonoBehaviour
         SoundManager.PlaySound("bearClaw");
         //transform.position = Vector2.Lerp(transform.position, transform.position + new Vector3(attackDirection,0), dashtime * Time.deltaTime);
         playerRigidbody.velocity = Vector2.zero;
-        animator.SetBool("Attack", true);
+        animator.SetTrigger("AttackTrigger");
         playerRigidbody.AddForce(new Vector2(attackDirection*dashPower,100),ForceMode2D.Impulse);
         //StartCoroutine(GravityOff());
         Collider2D[] result = Physics2D.OverlapCircleAll(gameObject.transform.position + new Vector3(attackDirection,0,0), 10f);
@@ -335,7 +348,7 @@ public class playerMovement : MonoBehaviour
         }
     }
 
-    private IEnumerator DamageFlash()
+    public IEnumerator DamageFlash()
     {
         invulnerable = true;
         for(int i = 0; i < 3; i++)
