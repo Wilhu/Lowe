@@ -15,6 +15,7 @@ public class RespawnBox : MonoBehaviour
     PlayerHealth m_health;
     playerMovement playerMovement;
     public int fallDamage = 1;
+    public GameObject FadeBlack;
     void Start()
     {
         respawnpositions = new List<float>();
@@ -59,10 +60,23 @@ public class RespawnBox : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag=="Player")
         {
+            StartCoroutine(FadeBlack.GetComponent<FadeBlack>().ScreenFadeBlack());
+            //player.transform.position = reverse[ClosestSpawn].transform.position;
+            //m_health.pHealth = m_health.pHealth-fallDamage;
+            //StartCoroutine(playerMovement.DamageFlash());
+            //StartCoroutine(FadeBlack.GetComponent<FadeBlack>().ScreenFadeBlack(false));
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if(other.gameObject.tag =="Player")
+        {
             player.transform.position = reverse[ClosestSpawn].transform.position;
             m_health.pHealth = m_health.pHealth-fallDamage;
             StartCoroutine(playerMovement.DamageFlash());
+            StartCoroutine(FadeBlack.GetComponent<FadeBlack>().ScreenFadeBlack(false));
         }
+        
     }
 
 

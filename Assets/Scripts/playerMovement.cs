@@ -6,7 +6,7 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour
 {
     public float movementSpeedMax = 20;
-    private float movementSpeed;
+    public float movementSpeed;
     public float jumpForce = 1;
     public float acceleration = 0.5f;
     public float deceleration = 1.5f;
@@ -44,6 +44,7 @@ public class playerMovement : MonoBehaviour
     public Animator animator;
     private SpriteRenderer spriteRenderer;
     public bool invulnerable = false;
+    private float movement;
 
 
 
@@ -100,6 +101,7 @@ public class playerMovement : MonoBehaviour
 
     private void Update() {
         BearObjects();
+        movement = Input.GetAxisRaw("Horizontal");
     }
     private void Jump()
     {
@@ -150,7 +152,7 @@ public class playerMovement : MonoBehaviour
     }
     private void MovePlayer()
     {
-        float movement = Input.GetAxisRaw("Horizontal");
+        //float movement = Input.GetAxisRaw("Horizontal");
         if(Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0)
         {
             if(playerIsFacingRight==false)
