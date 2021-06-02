@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3215894762671358528}
   - component: {fileID: 6770480588610083157}
   - component: {fileID: 3259634595121012202}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Asset - Lohkare6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
