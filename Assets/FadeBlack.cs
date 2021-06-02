@@ -8,7 +8,7 @@ public class FadeBlack : MonoBehaviour
 {
     public GameObject BlackScreen;
 
-    public IEnumerator ScreenFadeBlack(bool fadeToBlack = true, int fadeSpeed = 5)
+    public IEnumerator ScreenFadeBlack(bool fadeToBlack = true, int fadeSpeed = 3)
     {
         Color objectColor = BlackScreen.GetComponent<Image>().color;
         float fadeAmount;

@@ -23,6 +23,7 @@ public class EnemyPeikkoAttack : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     [SerializeField]
     private SpriteRenderer bushSpriteRenderer;
+    public Animator animator;
 
 
 
@@ -62,6 +63,7 @@ private void Update()
         }
         if(attackCooldown<=0 && activePeikko==true && canAttack==true)
         {
+            animator.SetBool("Heitto",true);
             StartCoroutine("AttackLeft");
         }
         //Debug.Log("player detected left");
@@ -79,6 +81,7 @@ private void Update()
         }
         if(attackCooldown<=0 && activePeikko==true && canAttack==true)
         {
+            animator.SetBool("Heitto", true);
             StartCoroutine("AttackRight");
         }
         //Debug.Log(("player detected right"));
@@ -87,6 +90,7 @@ private void Update()
 
     private bool PlayerDetectedLeft()
     {
+
         RaycastHit2D raycastleft = Physics2D.BoxCast(transform.position, new Vector2(1,1),0f,Vector2.left,viewDistance,LayerMask.GetMask("Player"));
         return raycastleft.collider != null;
     }
@@ -134,6 +138,7 @@ private void Update()
 
     private IEnumerator BushJump()
     {
+        animator.SetTrigger("Hyppy");
         prb.AddForce(new Vector2(0,150),ForceMode2D.Impulse);
         activePeikko = true;
         yield return new WaitForSeconds(0.1f);

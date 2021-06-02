@@ -123,6 +123,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 7365707472061689405, guid: 32f0284e42435a948a9b8771127004bf, type: 3}
+  cameraObject: {fileID: 7026802611382078385, guid: efd0ebd0a7797f84e9d7887f41e9eb74, type: 3}
   ClosestSpawn: 0
   slot: 0
   fallDamage: 1
+  FadeBlack: {fileID: 7288939490710364016, guid: c71aa998a2cc74549a8933bd285ff9aa, type: 3}

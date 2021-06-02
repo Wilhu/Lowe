@@ -19,6 +19,7 @@ public class EnemyPeikkoMovement : MonoBehaviour
     private bool enemyFacingLeft = true;
     [SerializeField]
     private SpriteRenderer bushSpriteRenderer;
+    public Animator animator;
 
     private void Start() {
         prb = GetComponent<Rigidbody2D>();
@@ -42,6 +43,7 @@ public class EnemyPeikkoMovement : MonoBehaviour
         if(state == PeikkoState.Moving)
         {
             transform.position = transform.position + new Vector3(moveDirection,0,0) * speed * Time.deltaTime;
+            animator.SetBool("Running",true);
         }
         else
         {

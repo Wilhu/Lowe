@@ -6,6 +6,7 @@ using System.Linq;
 public class RespawnBox : MonoBehaviour
 {
     [SerializeField] GameObject player;
+    [SerializeField] GameObject cameraObject;
     private GameObject[] respawns;
     private GameObject[] reverse;
     private List<float> respawnpositions;
@@ -14,6 +15,7 @@ public class RespawnBox : MonoBehaviour
     public int slot = 0;
     PlayerHealth m_health;
     playerMovement playerMovement;
+    CameraFollow cameraFollow;
     public int fallDamage = 1;
     public GameObject FadeBlack;
     void Start()
@@ -22,6 +24,7 @@ public class RespawnBox : MonoBehaviour
         respawns = GameObject.FindGameObjectsWithTag("respawn");
         m_health = player.GetComponent<PlayerHealth>();
         playerMovement = player.GetComponent<playerMovement>();
+        cameraFollow = cameraObject.GetComponent<CameraFollow>();
 
 
        /* foreach(GameObject respawn in respawns)
@@ -72,6 +75,7 @@ public class RespawnBox : MonoBehaviour
         if(other.gameObject.tag =="Player")
         {
             player.transform.position = reverse[ClosestSpawn].transform.position;
+            cameraFollow.ResetCamera();
             m_health.pHealth = m_health.pHealth-fallDamage;
             StartCoroutine(playerMovement.DamageFlash());
             StartCoroutine(FadeBlack.GetComponent<FadeBlack>().ScreenFadeBlack(false));
