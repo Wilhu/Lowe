@@ -11,7 +11,6 @@ public class CameraFollow : MonoBehaviour
     void FixedUpdate()
     {
         float dist = Vector3.Distance(transform.position, target.position);
-        Debug.Log(dist);
         transform.position = Vector3.SmoothDamp(transform.position,target.position, ref velocity, SmoothTime);
         
     }

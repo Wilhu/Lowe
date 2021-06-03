@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4774011424386105640}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.95, y: 0.202, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.25, z: 1}
+  m_LocalPosition: {x: -1.18, y: 0.083, z: 0}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 4774011425007838922}
   m_RootOrder: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e31edfd5bd9309a439f7b39ffe013e23, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 4774011425007838924}
   - component: {fileID: 4774011425007838925}
   - component: {fileID: 4774011425007838923}
+  - component: {fileID: 1873905816}
   m_Layer: 7
   m_Name: "PeikkoKivitt\xE4j\xE4 1"
   m_TagString: Enemy
@@ -145,7 +146,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4774011425007838935}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 13.1, y: 13.85, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
@@ -193,7 +194,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: eddd4c7db32582249a63267f7a20880e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f0bfcc0519cb15346b1b57752b85fd52, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -218,11 +219,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewDistance: 40
   stone: {fileID: 4774011424386105641}
-  player: {fileID: 7365707472061689403, guid: 32f0284e42435a948a9b8771127004bf, type: 3}
-  attackCooldown: 3
+  player: {fileID: 0}
+  attackCooldown: 2
   stoneSpeed: 50
-  useBush: 1
-  bushSpriteRenderer: {fileID: 5979057942838722218, guid: 68d19040e4d496e47954ee93aee1983f, type: 3}
+  useBush: 0
+  bushSpriteRenderer: {fileID: 0}
+  animator: {fileID: 1873905816}
 --- !u!114 &4774011425007838924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,7 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  damage: 1
+  damage: 3
 --- !u!50 &4774011425007838925
 Rigidbody2D:
   serializedVersion: 4
@@ -271,6 +273,25 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06999999, y: -0.09421396}
-  m_Size: {x: 1.1020565, y: 3.000764}
+  m_Offset: {x: -0.28048897, y: -0.09421396}
+  m_Size: {x: 1.3651676, y: 3.000764}
   m_Direction: 0
+--- !u!95 &1873905816
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4774011425007838935}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c68197c1c00130f4baf9fe71a5fd8480, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
