@@ -24,6 +24,7 @@ public class EnemyPeikkoMovement : MonoBehaviour
     private void Start() {
         prb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
 
         if(useBush==true)
         {
