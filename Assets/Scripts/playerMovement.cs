@@ -48,13 +48,14 @@ public class playerMovement : MonoBehaviour
 
 
 
-
+    void Awake() {
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
 
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
         playerBoxCollider = GetComponent<BoxCollider2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         m_health = GetComponent<PlayerHealth>();
         humanMovementSpeedMax = movementSpeedMax;
         humanJumpForce = jumpForce;

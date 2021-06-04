@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     private int health;
     private ArrowUI arrow;
     public GameObject FadeBlack;
+    public GameObject DeathPanel;
 
     private void Start() {
         health = maxHealth;
@@ -21,8 +22,10 @@ public class PlayerHealth : MonoBehaviour
         if(health<1)
         {
             Debug.Log("ded");
-            //StartCoroutine(FadeBlack.GetComponent<FadeBlack>().ScreenFadeBlack());
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            StartCoroutine(FadeBlack.GetComponent<FadeBlack>().ScreenFadeBlack());
+            Time.timeScale = 0f;
+            DeathPanel.SetActive(true);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         }
     }
