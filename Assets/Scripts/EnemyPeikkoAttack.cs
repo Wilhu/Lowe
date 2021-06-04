@@ -31,7 +31,7 @@ public class EnemyPeikkoAttack : MonoBehaviour
 
 private void Start() {
     prb = GetComponent<Rigidbody2D>();
-    spriteRenderer = GetComponent<SpriteRenderer>();
+    spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     attackCooldownd = attackCooldown;
     attackCooldown = 0;
     if (useBush==true)
@@ -73,7 +73,7 @@ private void Update()
             {
                 animator.SetTrigger("Heitto");
             }
-            Debug.Log("heitto");
+            //Debug.Log("heitto");
             //StartCoroutine("Attack");
         }
         //Debug.Log("player detected left");
@@ -100,7 +100,7 @@ private void Update()
             {
                 animator.SetTrigger("Heitto");
             }
-            Debug.Log("heitto");
+            //Debug.Log("heitto");
             //StartCoroutine("Attack");
         }
         //Debug.Log(("player detected right"));
@@ -131,7 +131,7 @@ private void Update()
 
     }
 
-    private IEnumerator Attack()
+    public IEnumerator Attack()
     {
         attackCooldown = attackCooldownd;
         Rigidbody2D stoneclone;
