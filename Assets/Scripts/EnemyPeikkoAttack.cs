@@ -156,7 +156,7 @@ private void Update()
         stoneclone.gameObject.AddComponent<CircleCollider2D>();
     }
 */
-    private IEnumerator BushJump()
+    public IEnumerator BushJump()
     {
         prb.AddForce(new Vector2(0,150),ForceMode2D.Impulse);
         activePeikko = true;

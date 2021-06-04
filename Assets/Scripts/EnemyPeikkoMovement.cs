@@ -92,7 +92,7 @@ public class EnemyPeikkoMovement : MonoBehaviour
         return raycastl.collider || raycastr.collider != null;
     }
 
-    private IEnumerator BushJump()
+    public IEnumerator BushJump()
     {
         state = PeikkoState.Moving;
         prb.AddForce(new Vector2(0,150),ForceMode2D.Impulse);
