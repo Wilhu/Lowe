@@ -8,6 +8,8 @@ public class Parallax : MonoBehaviour
 	[SerializeField] public float parallaxMultiplier = 1f; 
 	[SerializeField] public float parallaxRelativeVertical = 0f; 
 	[SerializeField] public bool usePerspective = false;
+    [SerializeField] public bool useRelativeStartPosition = false;
+
 	public Camera cam; 
 	public FakePerspective fakePerspective;
 
@@ -22,8 +24,17 @@ public class Parallax : MonoBehaviour
     public virtual void CreatePerspective()
     {
         cam = Camera.main;
-        startX = transform.position.x;
-        startY = transform.position.y;
+        
+        if (useRelativeStartPosition)
+        {
+        startX = transform.position.x + (cam.transform.position.x   *  (1 - parallaxMultiplier));
+        startY = transform.position.y + (cam.transform.position.y   * (1 - (parallaxMultiplier   * parallaxRelativeVertical)));
+        }
+        else
+        {
+            startX = transform.position.x;
+            startY = transform.position.y;
+        }
         fakePerspective = FindObjectOfType<FakePerspective>();
     }
 
@@ -45,9 +56,12 @@ public class Parallax : MonoBehaviour
             perspectiveY = 0f;
         }
 
-        camRelativePos = (cam.transform.position.x * (1 - parallaxMultiplier));
-        float dist = (cam.transform.position.x * parallaxMultiplier + (perspectiveX * parallaxMultiplier));
-        float height = (cam.transform.position.y * (parallaxMultiplier * parallaxRelativeVertical) + (perspectiveY * parallaxMultiplier));
-        transform.position = new Vector3(startX + dist, startY + height, transform.position.z);
+        camRelativePos =    (cam.transform.position.x   * (1 - parallaxMultiplier));
+        float dist =        (cam.transform.position.x   *  parallaxMultiplier                               +   (perspectiveX     * parallaxMultiplier));
+        float height =      (cam.transform.position.y   * (parallaxMultiplier   * parallaxRelativeVertical) +   (perspectiveY     * parallaxMultiplier));
+        transform.position = new Vector3(
+            startX + dist, 
+            startY + height, 
+            transform.position.z);
     }
 }
