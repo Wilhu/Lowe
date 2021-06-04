@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.Log("ded");
             StartCoroutine(FadeBlack.GetComponent<FadeBlack>().ScreenFadeBlack());
-            Time.timeScale = 0.1f;
+            Time.timeScale = 0.2f;
             DeathPanel.SetActive(true);
             //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }

@@ -63,6 +63,7 @@ public class RespawnBox : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag=="Player")
         {
+            SoundManager.PlaySound("pit_fall");
             StartCoroutine(FadeBlack.GetComponent<FadeBlack>().ScreenFadeBlack());
             //player.transform.position = reverse[ClosestSpawn].transform.position;
             //m_health.pHealth = m_health.pHealth-fallDamage;
@@ -77,6 +78,7 @@ public class RespawnBox : MonoBehaviour
             player.transform.position = reverse[ClosestSpawn].transform.position;
             cameraFollow.ResetCamera();
             m_health.pHealth = m_health.pHealth-fallDamage;
+            SoundManager.PlaySound("respawn_jiggle");
             StartCoroutine(playerMovement.DamageFlash());
             StartCoroutine(FadeBlack.GetComponent<FadeBlack>().ScreenFadeBlack(false));
         }

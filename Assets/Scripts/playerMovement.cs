@@ -45,6 +45,7 @@ public class playerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public bool invulnerable = false;
     private float movement;
+    private AudioSource audioSrc;
 
 
 
@@ -63,6 +64,7 @@ public class playerMovement : MonoBehaviour
         humanDeceleration = deceleration;
         humanTurnRate = turnRate;
         bearObjects = GameObject.FindGameObjectsWithTag("Bear");
+        audioSrc = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -73,9 +75,19 @@ public class playerMovement : MonoBehaviour
 
         //Debug.Log("mayJump: " + mayJump);
         //Debug.Log("jumpCD: " + jumpCD);
-        if(animator.GetCurrentAnimatorStateInfo(0).IsName("testi 2 power"))
+        if(animator.GetCurrentAnimatorStateInfo(0).IsName("testi 2 power") || m_health.pHealth < 1)
         {
+            //Debug.Log("test");
             return;
+        }
+        if(animator.GetCurrentAnimatorStateInfo(0).IsTag("run"))
+        {
+            if(!audioSrc.isPlaying)
+            audioSrc.Play();
+        }
+        else
+        {
+            audioSrc.Pause();
         }
         Jump();
         MovePlayer();
@@ -187,6 +199,7 @@ public class playerMovement : MonoBehaviour
         }
         transform.position = transform.position + new Vector3(movement, 0, 0) * movementSpeed * Time.deltaTime;
         animator.SetFloat("Movement Speed", Mathf.Abs(movement));
+
         //playerRigidbody.MovePosition(transform.position + new Vector3(movement, 0, 0) * movementSpeed * Time.deltaTime);
     }
 
@@ -330,6 +343,7 @@ public class playerMovement : MonoBehaviour
             {
             //playerRigidbody.AddForce(new Vector2((other.gameObject.transform.position.x-transform.position.x)*100,(other.gameObject.transform.position.y-transform.position.y)*100),ForceMode2D.Impulse);
             playerRigidbody.AddForce(new Vector2((transform.position.x-other.gameObject.transform.position.x)*knockbackforce,(transform.position.y-other.gameObject.transform.position.y)*knockbackforce),ForceMode2D.Impulse);
+            SoundManager.PlaySound("getting_hit");
             StartCoroutine("DamageFlash");
             //Debug.Log("damaa");
            // Debug.Log(other.gameObject.transform.position.x-transform.position.x);

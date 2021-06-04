@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public static AudioClip bearClaw, enemyHit, Jump, Landing;
+    public static AudioClip bearClaw, enemyHit, Jump, Landing, FootStep, playerHit, pitFall, respawnJiggle;
     public static AudioSource audioSrc;
 
     private void Start() {
-        bearClaw = Resources.Load<AudioClip>("Bear claw");
+        bearClaw = Resources.Load<AudioClip>("clawattack");
         enemyHit = Resources.Load<AudioClip>("Hit enemy");
-        Jump = Resources.Load<AudioClip>("Jump");
+        Jump = Resources.Load<AudioClip>("jump 1");
         Landing = Resources.Load<AudioClip>("Landing");
+        FootStep = Resources.Load<AudioClip>("footstep");
+        playerHit = Resources.Load<AudioClip>("getting_hit");
+        pitFall = Resources.Load<AudioClip>("pit_fall");
+        respawnJiggle = Resources.Load<AudioClip>("respawn_jiggle");
+
 
         audioSrc = GetComponent<AudioSource>();
     }
@@ -33,6 +38,22 @@ public class SoundManager : MonoBehaviour
 
             case "Landing":
             audioSrc.PlayOneShot(Landing);
+            break;
+
+            case "footstep":
+            audioSrc.PlayOneShot(FootStep);
+            break;
+
+            case "getting_hit":
+            audioSrc.PlayOneShot(playerHit);
+            break;
+
+            case "pit_fall":
+            audioSrc.PlayOneShot(pitFall);
+            break;
+
+            case "respawn_jiggle":
+            audioSrc.PlayOneShot(respawnJiggle);
             break;
 
         }
