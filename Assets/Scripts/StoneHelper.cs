@@ -10,7 +10,7 @@ public class StoneHelper : MonoBehaviour
     void Awake()
     {
         attackScript = transform.parent.GetComponent<EnemyPeikkoAttack>();
-        movementScript = transform.parent.GetComponent<EnemyPeikkoMovement>();
+        //movementScript = transform.parent.GetComponent<EnemyPeikkoMovement>();
     }
 
     // Update is called once per frame
@@ -21,6 +21,6 @@ public class StoneHelper : MonoBehaviour
 
     void BushJump()
     {
-        StartCoroutine(movementScript.BushJump());
+        StartCoroutine(attackScript.BushJump());
     }
 }
