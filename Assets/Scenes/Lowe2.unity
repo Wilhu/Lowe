@@ -983,6 +983,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &221725771 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 101280082, guid: 32f0284e42435a948a9b8771127004bf, type: 3}
+  m_PrefabInstance: {fileID: 7365707472723916996}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &221725775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 221725771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53a478aabf602724ead1f3e779539381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 2022397695}
+  Offset: {x: 0, y: 0, z: 0}
+  lerpFactor: 0.1
 --- !u!1 &259578768
 GameObject:
   m_ObjectHideFlags: 0
@@ -5173,5 +5193,10 @@ PrefabInstance:
       propertyPath: DeathPanel
       value: 
       objectReference: {fileID: 1936953271}
-    m_RemovedComponents: []
+    - target: {fileID: 7365707472572772075, guid: 32f0284e42435a948a9b8771127004bf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7365707472572772075, guid: 32f0284e42435a948a9b8771127004bf, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 32f0284e42435a948a9b8771127004bf, type: 3}
