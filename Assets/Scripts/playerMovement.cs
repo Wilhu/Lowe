@@ -80,15 +80,6 @@ public class playerMovement : MonoBehaviour
             //Debug.Log("test");
             return;
         }
-        if(animator.GetCurrentAnimatorStateInfo(0).IsTag("run"))
-        {
-            if(!audioSrc.isPlaying)
-            audioSrc.Play();
-        }
-        else
-        {
-            audioSrc.Pause();
-        }
         Jump();
         MovePlayer();
 
@@ -164,7 +155,11 @@ public class playerMovement : MonoBehaviour
         }
     }
     private void MovePlayer()
-    {
+    {   
+        if(Input.GetButton("Horizontal") && IsGrounded())
+        {
+            SoundManager.PlaySound("forestbed_footstep");
+        }
         //float movement = Input.GetAxisRaw("Horizontal");
         if(Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0)
         {

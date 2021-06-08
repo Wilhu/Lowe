@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public static AudioClip bearClaw, enemyHit, Jump, Landing, FootStep, playerHit, pitFall, respawnJiggle;
+    public static AudioClip bearClaw, enemyHit, Jump, Landing, FootStep, playerHit, pitFall, respawnJiggle, ForestFootStep;
     public static AudioSource audioSrc;
 
     private void Start() {
@@ -16,6 +16,7 @@ public class SoundManager : MonoBehaviour
         playerHit = Resources.Load<AudioClip>("getting_hit");
         pitFall = Resources.Load<AudioClip>("pit_fall");
         respawnJiggle = Resources.Load<AudioClip>("respawn_jiggle");
+        ForestFootStep = Resources.Load<AudioClip>("forestbed_footstep");
 
 
         audioSrc = GetComponent<AudioSource>();
@@ -41,7 +42,21 @@ public class SoundManager : MonoBehaviour
             break;
 
             case "footstep":
-            audioSrc.PlayOneShot(FootStep);
+            if(audioSrc.isPlaying){
+                break;
+            }
+            else{
+                audioSrc.PlayOneShot(FootStep);
+            }
+            break;
+
+            case "forestbed_footstep":
+            if(audioSrc.isPlaying){
+                break;
+            }
+            else{
+                audioSrc.PlayOneShot(FootStep);
+            }
             break;
 
             case "getting_hit":
