@@ -64,6 +64,7 @@ public class RespawnBox : MonoBehaviour
         if(other.gameObject.tag=="Player")
         {
             SoundManager.PlaySound("pit_fall");
+            AudioSource.PlayClipAtPoint(SoundManager.pitFall, new Vector3(player.transform.position.x,player.transform.position.y,player.transform.position.z));
             StartCoroutine(FadeBlack.GetComponent<FadeBlack>().ScreenFadeBlack());
             //player.transform.position = reverse[ClosestSpawn].transform.position;
             //m_health.pHealth = m_health.pHealth-fallDamage;
@@ -78,7 +79,8 @@ public class RespawnBox : MonoBehaviour
             player.transform.position = reverse[ClosestSpawn].transform.position;
             cameraFollow.ResetCamera();
             m_health.pHealth = m_health.pHealth-fallDamage;
-            SoundManager.PlaySound("respawn_jiggle");
+            //SoundManager.PlaySound("respawn_jiggle");
+            AudioSource.PlayClipAtPoint(SoundManager.respawnJiggle, new Vector3(player.transform.position.x,player.transform.position.y,player.transform.position.z));
             StartCoroutine(playerMovement.DamageFlash());
             StartCoroutine(FadeBlack.GetComponent<FadeBlack>().ScreenFadeBlack(false));
         }

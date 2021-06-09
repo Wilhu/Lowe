@@ -14,13 +14,15 @@ using UnityEngine;
      public Color disabledColor;
      public Color pressedColor;
      public Color highlightedColor;
+     private float textfontsize;
  
      void Start()
      {
          txt = GetComponentInChildren<TextMeshProUGUI>();
          btn = gameObject.GetComponent<Button>();
+         textfontsize = txt.fontSize;
      }
- 
+     
      private ButtonStatus lastButtonStatus = ButtonStatus.Normal;
      private bool isHighlightDesired = false;
      private bool isPressedDesired = false;
@@ -62,21 +64,25 @@ using UnityEngine;
      public void OnPointerEnter( PointerEventData eventData )
      {
          isHighlightDesired = true;
+         txt.fontSize += 1;
      }
  
      public void OnPointerDown( PointerEventData eventData )
      {
          isPressedDesired = true;
+         txt.fontSize -= 2;
      }
  
      public void OnPointerUp( PointerEventData eventData )
      {
          isPressedDesired = false;
+         txt.fontSize = textfontsize;
      }
  
      public void OnPointerExit( PointerEventData eventData )
      {
          isHighlightDesired = false;
+         txt.fontSize = textfontsize;
      }
  
      public enum ButtonStatus
