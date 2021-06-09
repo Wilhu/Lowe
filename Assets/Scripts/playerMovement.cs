@@ -125,7 +125,8 @@ public class playerMovement : MonoBehaviour
             if(jumpCD < 0 && Input.GetButton("Jump"))
             {
                 //Debug.Log("Jumped");
-                SoundManager.PlaySound("Jump");
+                //SoundManager.PlaySound("Jump");
+                AudioSource.PlayClipAtPoint(SoundManager.Jump, new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
                 animator.SetTrigger("JumpTrigger");
                 jumpCD = 0.5f;
                 playerRigidbody.velocity = new Vector2(0,0); //Vector3.zero;
@@ -159,6 +160,7 @@ public class playerMovement : MonoBehaviour
         if(Input.GetButton("Horizontal") && IsGrounded())
         {
             SoundManager.PlaySound("forestbed_footstep");
+            //AudioSource.PlayClipAtPoint(SoundManager.ForestFootStep, new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
         }
         //float movement = Input.GetAxisRaw("Horizontal");
         if(Input.GetButton("Horizontal") && Input.GetAxis("Horizontal") > 0)
@@ -292,7 +294,8 @@ public class playerMovement : MonoBehaviour
     {
         if(attackCD<=0)
         {
-        SoundManager.PlaySound("bearClaw");
+        //SoundManager.PlaySound("bearClaw");
+        AudioSource.PlayClipAtPoint(SoundManager.bearClaw, new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
         //transform.position = Vector2.Lerp(transform.position, transform.position + new Vector3(attackDirection,0), dashtime * Time.deltaTime);
         playerRigidbody.velocity = Vector2.zero;
         animator.SetTrigger("AttackTrigger");
@@ -306,7 +309,8 @@ public class playerMovement : MonoBehaviour
                 if(res.tag == "Enemy")
                 {
                     //Debug.Log("jee vihu");
-                    SoundManager.PlaySound("enemyHit");
+                    //SoundManager.PlaySound("enemyHit");
+                    AudioSource.PlayClipAtPoint(SoundManager.enemyHit, new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
                     EnemyHealth m_enemyhealth = res.GetComponent<EnemyHealth>();
                     m_enemyhealth.eHealth = m_enemyhealth.eHealth-1; 
                 }
@@ -338,7 +342,8 @@ public class playerMovement : MonoBehaviour
             {
             //playerRigidbody.AddForce(new Vector2((other.gameObject.transform.position.x-transform.position.x)*100,(other.gameObject.transform.position.y-transform.position.y)*100),ForceMode2D.Impulse);
             playerRigidbody.AddForce(new Vector2((transform.position.x-other.gameObject.transform.position.x)*knockbackforce,(transform.position.y-other.gameObject.transform.position.y)*knockbackforce),ForceMode2D.Impulse);
-            SoundManager.PlaySound("getting_hit");
+            //SoundManager.PlaySound("getting_hit");
+            AudioSource.PlayClipAtPoint(SoundManager.playerHit, new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
             StartCoroutine("DamageFlash");
             //Debug.Log("damaa");
            // Debug.Log(other.gameObject.transform.position.x-transform.position.x);
@@ -351,9 +356,10 @@ public class playerMovement : MonoBehaviour
         if(other.gameObject.tag == "Ground" )
         {
             canplaylandingsound = true;
-            if(canplaylandingsound = true && !SoundManager.audioSrc.isPlaying && IsGrounded())
+            if(canplaylandingsound = true && IsGrounded())
             {
-                SoundManager.PlaySound("Landing");
+                //SoundManager.PlaySound("Landing");
+                AudioSource.PlayClipAtPoint(SoundManager.Landing, new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
                 canplaylandingsound = false;
             }
         }
