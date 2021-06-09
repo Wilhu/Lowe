@@ -219,12 +219,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeedMax: 25
   movementSpeed: 0
-  jumpForce: 600
+  jumpForce: 650
   acceleration: 1.5
   deceleration: 1.5
   turnRate: 1
   bearMovementSpeedMax: 35
-  bearJumpForce: 600
+  bearJumpForce: 650
   bearAcceleration: 2
   bearDeceleration: 2
   bearTurnRate: 1
