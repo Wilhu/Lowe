@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameObject settingsmenu;
+
+    private void Update() {
+        if(Input.GetKeyDown(KeyCode.Escape) && settingsmenu.activeInHierarchy)
+        {
+            settingsmenu.SetActive(false);
+        }
+    }
     public void PlayGame()
     {
         Debug.Log("Starting...");
@@ -15,5 +23,15 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("Quiting...");
         Application.Quit();
+    }
+
+    public void Settings()
+    {
+        settingsmenu.SetActive(true);
+    }
+
+    public void Back()
+    {
+        settingsmenu.SetActive(false);
     }
 }

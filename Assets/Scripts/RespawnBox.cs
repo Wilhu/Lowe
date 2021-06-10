@@ -8,7 +8,7 @@ public class RespawnBox : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] GameObject cameraObject;
     private GameObject[] respawns;
-    private GameObject[] reverse;
+    public GameObject[] reverse;
     private List<float> respawnpositions;
     //private List<float> sortedRespawnPositions;
     public int ClosestSpawn = 0;
@@ -80,14 +80,19 @@ public class RespawnBox : MonoBehaviour
             cameraFollow.ResetCamera();
             m_health.pHealth = m_health.pHealth-fallDamage;
             //SoundManager.PlaySound("respawn_jiggle");
-            AudioSource.PlayClipAtPoint(SoundManager.respawnJiggle, new Vector3(player.transform.position.x,player.transform.position.y,player.transform.position.z));
+            //AudioSource.PlayClipAtPoint(SoundManager.respawnJiggle, new Vector3(player.transform.position.x,player.transform.position.y,player.transform.position.z));
             StartCoroutine(playerMovement.DamageFlash());
-            StartCoroutine(FadeBlack.GetComponent<FadeBlack>().ScreenFadeBlack(false));
+            StartCoroutine(FadeAfterTime(0.5f));
+            //StartCoroutine(FadeBlack.GetComponent<FadeBlack>().ScreenFadeBlack(false));
         }
         
     }
 
-
-
+    IEnumerator FadeAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        StartCoroutine(FadeBlack.GetComponent<FadeBlack>().ScreenFadeBlack(false));
+        AudioSource.PlayClipAtPoint(SoundManager.respawnJiggle, new Vector3(player.transform.position.x,player.transform.position.y,player.transform.position.z));
+    }
 
 }
