@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5065938894474154950}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rituaalipuu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5065938894510432321}
   - component: {fileID: 5065938894510432326}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rituaalipuu (Runko)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5065938894559151936}
   - component: {fileID: 5065938894559151937}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rituaalipuu - Oksa1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5065938894613278660}
   - component: {fileID: 5065938894613278661}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rituaalipuu - Oksa3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,7 +296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5065938894799150418}
   - component: {fileID: 5065938894799150419}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rituaalipuu - Oksa4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5065938895508663315}
   - component: {fileID: 5065938895508663312}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rituaalipuu - Oksa5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -460,7 +460,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5065938895615983024}
   - component: {fileID: 5065938895615983025}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rituaalipuu - Oksa5 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -542,7 +542,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5065938895716881724}
   - component: {fileID: 5065938895716881725}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rituaalipuu - Oksa3 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -624,7 +624,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5065938895848297484}
   - component: {fileID: 5065938895848297485}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rituaalipuu - Oksa1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -706,7 +706,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5065938895976158079}
   - component: {fileID: 5065938895976158076}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rituaalipuu - Oksa2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -788,7 +788,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5065938896188735584}
   - component: {fileID: 5065938896188735585}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rituaalipuu - Oksa5 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

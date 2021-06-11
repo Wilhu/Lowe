@@ -168,7 +168,7 @@ MonoBehaviour:
   viewDistance: 40
   stone: {fileID: 4774011424386105641}
   player: {fileID: 0}
-  attackCooldown: 2
+  attackCooldown: 1
   stoneSpeed: 50
   useBush: 0
   bushSpriteRenderer: {fileID: 0}
