@@ -66,6 +66,7 @@ public class playerMovement : MonoBehaviour
         humanTurnRate = turnRate;
         bearObjects = GameObject.FindGameObjectsWithTag("Bear");
         audioSrc = GetComponent<AudioSource>();
+        soundManager = GameObject.Find("SoundManager");
     }
 
     void FixedUpdate()

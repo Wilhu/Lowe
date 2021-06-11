@@ -6,7 +6,11 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool paused = false;
     public GameObject pauseMenuUI;
+    SettingsMenu settingsMenuParent;
 
+    private void Start() {
+        settingsMenuParent = GameObject.Find("SettingsCanvas").GetComponent<SettingsMenu>();
+    }
     private void Update() {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
@@ -40,7 +44,9 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Quiting");
         Application.Quit();
     }
-        
-    
 
+    public void Settings()
+    {
+        settingsMenuParent.settingsMenu.SetActive(true);
+    }
 }

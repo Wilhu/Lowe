@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
     public static AudioClip bearClaw, enemyHit, Jump, Landing, FootStep, playerHit, pitFall, respawnJiggle, ForestFootStep;
     public static AudioSource audioSrc;
+    public AudioMixer musicMixer;
+    public Slider musicSlider;
+    public AudioMixer soundMixer;
+    public Slider soundSlider;
 
     private void Start() {
         bearClaw = Resources.Load<AudioClip>("clawattack");
@@ -19,8 +24,12 @@ public class SoundManager : MonoBehaviour
         respawnJiggle = Resources.Load<AudioClip>("respawn_jiggle");
         ForestFootStep = Resources.Load<AudioClip>("forestbed_footstep");
 
-
         audioSrc = GetComponent<AudioSource>();
+
+        musicSlider.value = PlayerPrefs.GetFloat("Music", 0);
+        musicMixer.SetFloat("MusicVol", Mathf.Log10(musicSlider.value) *20);
+        soundSlider.value = PlayerPrefs.GetFloat("Sound", 0);
+        soundMixer.SetFloat("GameSoundVol", Mathf.Log10(musicSlider.value) *20);
     }
 
     public static void PlaySound(string clip)
