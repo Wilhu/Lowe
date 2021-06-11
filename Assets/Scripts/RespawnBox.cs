@@ -18,6 +18,7 @@ public class RespawnBox : MonoBehaviour
     CameraFollow cameraFollow;
     public int fallDamage = 1;
     public GameObject FadeBlack;
+    public GameObject soundManager;
     void Start()
     {
         respawnpositions = new List<float>();
@@ -64,7 +65,8 @@ public class RespawnBox : MonoBehaviour
         if(other.gameObject.tag=="Player")
         {
             SoundManager.PlaySound("pit_fall");
-            AudioSource.PlayClipAtPoint(SoundManager.pitFall, new Vector3(player.transform.position.x,player.transform.position.y,player.transform.position.z));
+            //AudioSource.PlayClipAtPoint(SoundManager.pitFall, new Vector3(player.transform.position.x,player.transform.position.y,player.transform.position.z));
+            soundManager.GetComponent<SoundManager>().PlayClipAt(SoundManager.pitFall,new Vector3(player.transform.position.x,player.transform.position.y,player.transform.position.z));
             StartCoroutine(FadeBlack.GetComponent<FadeBlack>().ScreenFadeBlack());
             //player.transform.position = reverse[ClosestSpawn].transform.position;
             //m_health.pHealth = m_health.pHealth-fallDamage;
@@ -92,7 +94,8 @@ public class RespawnBox : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         StartCoroutine(FadeBlack.GetComponent<FadeBlack>().ScreenFadeBlack(false));
-        AudioSource.PlayClipAtPoint(SoundManager.respawnJiggle, new Vector3(player.transform.position.x,player.transform.position.y,player.transform.position.z));
+        //AudioSource.PlayClipAtPoint(SoundManager.respawnJiggle, new Vector3(player.transform.position.x,player.transform.position.y,player.transform.position.z));
+        soundManager.GetComponent<SoundManager>().PlayClipAt(SoundManager.respawnJiggle,new Vector3(player.transform.position.x,player.transform.position.y,player.transform.position.z));
     }
 
 }

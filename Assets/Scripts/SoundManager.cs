@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
@@ -73,4 +74,18 @@ public class SoundManager : MonoBehaviour
 
         }
     }
+
+    public void PlayClipAt(AudioClip clip, Vector3 pos){
+    GameObject tempGO = new GameObject("TempAudio"); // create the temp object
+    tempGO.transform.position = pos; // set its position
+    AudioSource aSource = tempGO.AddComponent<AudioSource>(); // add an audio source
+    AudioMixer aMixer = Resources.Load<AudioMixer>("GameSoundsMixer");
+    AudioMixerGroup[] aMixerGroup = aMixer.FindMatchingGroups("Master");
+    aSource.outputAudioMixerGroup = aMixerGroup[0];
+    aSource.clip = clip; // define the clip
+    // set other aSource properties here, if desired
+    aSource.Play(); // start the sound
+    Destroy(tempGO, clip.length); // destroy object after clip duration
+    //return aSource; // return the AudioSource reference
+ }
 }

@@ -46,6 +46,7 @@ public class playerMovement : MonoBehaviour
     public bool invulnerable = false;
     private float movement;
     private AudioSource audioSrc;
+    public GameObject soundManager;
 
 
 
@@ -126,7 +127,8 @@ public class playerMovement : MonoBehaviour
             {
                 //Debug.Log("Jumped");
                 //SoundManager.PlaySound("Jump");
-                AudioSource.PlayClipAtPoint(SoundManager.Jump, new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
+                //AudioSource.PlayClipAtPoint(SoundManager.Jump, new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z), 0.5f);
+                soundManager.GetComponent<SoundManager>().PlayClipAt(SoundManager.Jump,new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
                 animator.SetTrigger("JumpTrigger");
                 jumpCD = 0.5f;
                 playerRigidbody.velocity = new Vector2(0,0); //Vector3.zero;
@@ -295,7 +297,8 @@ public class playerMovement : MonoBehaviour
         if(attackCD<=0)
         {
         //SoundManager.PlaySound("bearClaw");
-        AudioSource.PlayClipAtPoint(SoundManager.bearClaw, new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
+        //AudioSource.PlayClipAtPoint(SoundManager.bearClaw, new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
+        soundManager.GetComponent<SoundManager>().PlayClipAt(SoundManager.bearClaw,new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
         //transform.position = Vector2.Lerp(transform.position, transform.position + new Vector3(attackDirection,0), dashtime * Time.deltaTime);
         playerRigidbody.velocity = Vector2.zero;
         animator.SetTrigger("AttackTrigger");
@@ -310,7 +313,8 @@ public class playerMovement : MonoBehaviour
                 {
                     //Debug.Log("jee vihu");
                     //SoundManager.PlaySound("enemyHit");
-                    AudioSource.PlayClipAtPoint(SoundManager.enemyHit, new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
+                    //AudioSource.PlayClipAtPoint(SoundManager.enemyHit, new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
+                    soundManager.GetComponent<SoundManager>().PlayClipAt(SoundManager.enemyHit,new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
                     EnemyHealth m_enemyhealth = res.GetComponent<EnemyHealth>();
                     m_enemyhealth.eHealth = m_enemyhealth.eHealth-1; 
                 }
@@ -343,7 +347,8 @@ public class playerMovement : MonoBehaviour
             //playerRigidbody.AddForce(new Vector2((other.gameObject.transform.position.x-transform.position.x)*100,(other.gameObject.transform.position.y-transform.position.y)*100),ForceMode2D.Impulse);
             playerRigidbody.AddForce(new Vector2((transform.position.x-other.gameObject.transform.position.x)*knockbackforce,(transform.position.y-other.gameObject.transform.position.y)*knockbackforce),ForceMode2D.Impulse);
             //SoundManager.PlaySound("getting_hit");
-            AudioSource.PlayClipAtPoint(SoundManager.playerHit, new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
+            //AudioSource.PlayClipAtPoint(SoundManager.playerHit, new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
+            soundManager.GetComponent<SoundManager>().PlayClipAt(SoundManager.playerHit,new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
             StartCoroutine("DamageFlash");
             //Debug.Log("damaa");
            // Debug.Log(other.gameObject.transform.position.x-transform.position.x);
@@ -359,7 +364,8 @@ public class playerMovement : MonoBehaviour
             if(canplaylandingsound = true && IsGrounded())
             {
                 //SoundManager.PlaySound("Landing");
-                AudioSource.PlayClipAtPoint(SoundManager.Landing, new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
+                //AudioSource.PlayClipAtPoint(SoundManager.Landing, new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
+                soundManager.GetComponent<SoundManager>().PlayClipAt(SoundManager.Landing,new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
                 canplaylandingsound = false;
             }
         }
