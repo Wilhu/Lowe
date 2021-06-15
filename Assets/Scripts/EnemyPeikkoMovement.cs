@@ -23,7 +23,7 @@ public class EnemyPeikkoMovement : MonoBehaviour
 
     private void Start() {
         prb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
 
         if(useBush==true)
@@ -50,8 +50,9 @@ public class EnemyPeikkoMovement : MonoBehaviour
         {
             if(PlayerDetect())
             {
-                Debug.Log("or");
-                StartCoroutine("BushJump");
+                //Debug.Log("or");
+                animator.SetTrigger("Hyppy");
+                //StartCoroutine("BushJump");
             }
         }
 

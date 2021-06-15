@@ -136,7 +136,8 @@ private void Update()
         attackCooldown = attackCooldownd;
         Rigidbody2D stoneclone;
         stoneclone = Instantiate(stone, stone.transform.position,stone.transform.rotation);
-        stoneclone.transform.SetParent(prb.transform);
+        //stoneclone.transform.SetParent(prb.transform);
+        stoneclone.transform.SetParent(null);
         stoneclone.gameObject.SetActive(true);
         stoneclone.velocity = transform.TransformDirection(new Vector3(attackDirection*stoneSpeed, 4f,0));
         yield return new WaitForSeconds(0.05f);
