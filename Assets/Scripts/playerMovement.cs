@@ -354,7 +354,7 @@ public class playerMovement : MonoBehaviour
             //Debug.Log("damaa");
            // Debug.Log(other.gameObject.transform.position.x-transform.position.x);
            // Debug.Log(other.gameObject.transform.position.y-transform.position.y);
-            EnemyHealth m_enemyhealth = other.gameObject.GetComponentInParent<EnemyHealth>();
+            EnemyHealth m_enemyhealth = other.gameObject.GetComponent<EnemyHealth>();
             m_health.pHealth = m_health.pHealth-m_enemyhealth.enemyDamage;
             }
 

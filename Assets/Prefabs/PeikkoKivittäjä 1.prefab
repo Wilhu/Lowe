@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4774011424386105642}
   - component: {fileID: 4774011424386105641}
   - component: {fileID: 4774011424386105644}
+  - component: {fileID: 4774011425360656666}
   m_Layer: 0
   m_Name: stone
   m_TagString: stone
@@ -117,6 +118,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6351df268e7c52e42bf284f03c6712d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4774011425360656666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4774011424386105640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3af06331b14d7c4e8f0e722c5ce0831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 99
+  damage: 3
 --- !u!1 &4774011425007838935
 GameObject:
   m_ObjectHideFlags: 0
