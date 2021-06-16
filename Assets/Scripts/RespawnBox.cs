@@ -26,6 +26,7 @@ public class RespawnBox : MonoBehaviour
         m_health = player.GetComponent<PlayerHealth>();
         playerMovement = player.GetComponent<playerMovement>();
         cameraFollow = cameraObject.GetComponent<CameraFollow>();
+        soundManager = GameObject.Find("SoundManager");
 
 
        /* foreach(GameObject respawn in respawns)
