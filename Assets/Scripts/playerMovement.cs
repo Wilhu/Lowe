@@ -205,6 +205,7 @@ public class playerMovement : MonoBehaviour
 
     private bool IsGrounded()
     {
+        Debug.Log("grounded");
         float extraHeight  = 0.005f;
         RaycastHit2D raycastHit = Physics2D.BoxCast(playerBoxCollider.bounds.min + new Vector3(playerBoxCollider.bounds.extents.x,0), playerBoxCollider.bounds.size - new Vector3(0.4f,playerBoxCollider.bounds.extents.y*1.95f,0f), 0f, Vector2.down, extraHeight, platformLayerMask);
         //RaycastHit2D raycastHit = Physics2D.BoxCast(playerBoxCollider.bounds.min + 0.00005f * Vector3.up, playerBoxCollider.bounds.size - new Vector3(0.4f,0f,0f), 0f, Vector2.down, extraHeight, platformLayerMask);
@@ -366,6 +367,7 @@ public class playerMovement : MonoBehaviour
             {
                 //SoundManager.PlaySound("Landing");
                 //AudioSource.PlayClipAtPoint(SoundManager.Landing, new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
+                Debug.Log("landing sound");
                 soundManager.GetComponent<SoundManager>().PlayClipAt(SoundManager.Landing,new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
                 canplaylandingsound = false;
             }
