@@ -14,7 +14,11 @@ public class PauseMenu : MonoBehaviour
     private void Update() {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if(paused)
+            if(settingsMenuParent.settingsMenu.activeSelf == true)
+            {
+                settingsMenuParent.settingsMenu.SetActive(false);
+            }
+            else if(paused)
             {
                 Resume();
             }
@@ -23,6 +27,7 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
+        //Debug.Log(settingsMenuParent.settingsMenu.activeSelf);
     }
 
     public void Resume()
@@ -35,7 +40,7 @@ public class PauseMenu : MonoBehaviour
     private void Pause()
     {
         pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
+        Time.timeScale=0f;
         paused = true;
     }
 
