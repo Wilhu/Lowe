@@ -13,7 +13,7 @@ public class EnemyPeikkoMovement : MonoBehaviour
     [SerializeField]
     private float speed;
     [SerializeField] private bool useBush;
-    private bool activePeikko;
+    public bool activePeikko = true;
     [SerializeField]
     private float viewDistance;
     private bool enemyFacingLeft = true;
@@ -96,6 +96,7 @@ public class EnemyPeikkoMovement : MonoBehaviour
     public IEnumerator BushJump()
     {
         state = PeikkoState.Moving;
+        activePeikko=true;
         prb.AddForce(new Vector2(0,150),ForceMode2D.Impulse);
         //activePeikko = true;
         yield return new WaitForSeconds(0.1f);

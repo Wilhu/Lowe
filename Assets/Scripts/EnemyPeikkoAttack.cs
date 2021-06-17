@@ -17,7 +17,7 @@ public class EnemyPeikkoAttack : MonoBehaviour
     private float stoneSpeed;
     [SerializeField]
     private bool useBush;
-    private bool activePeikko;
+    public bool activePeikko;
     private bool canAttack;
     private Rigidbody2D prb; 
     private SpriteRenderer spriteRenderer;

@@ -32,7 +32,6 @@ public class FadeBlack : MonoBehaviour
                 BlackScreen.GetComponent<Image>().color = objectColor;
                 yield return null;
             }
-            //yield return new WaitForSeconds(2f);
         }
     }
 }
