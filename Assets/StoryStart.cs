@@ -15,8 +15,11 @@ public class StoryStart : MonoBehaviour
         Debug.Log(StoryImages.Length);
     }
     private void OnEnable() {
-        Time.timeScale=0f;
-        ImagesUI.SetActive(true);
+        if(PlayerPrefs.GetInt("CinematicStart")==0)
+        {
+            Time.timeScale=0f;
+            ImagesUI.SetActive(true);
+        }
     }
 
     private void Update() {
@@ -32,6 +35,7 @@ public class StoryStart : MonoBehaviour
             {
                 ImagesUI.SetActive(false);
                 Time.timeScale = 1f;
+                PlayerPrefs.SetInt("CinematicStart", 1);
             }
         }
     }
