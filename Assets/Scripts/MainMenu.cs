@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
     public GameObject settingsmenu;
     public AudioSource audioSource;
     public AudioClip StartButtonClickSound;
+    public GameObject controlsmenu;
     FadeBlack fadeBlack;
 
     private void Start() {
@@ -53,6 +54,15 @@ public class MainMenu : MonoBehaviour
         StartCoroutine(fadeBlack.ScreenFadeBlack());
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void Controls()
+    {
+        controlsmenu.SetActive(true);
+    }
+    public void ControlMenuBack()
+    {
+        controlsmenu.SetActive(false);
     }
 
 
