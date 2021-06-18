@@ -4987,6 +4987,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 4774011425007838920, guid: b009c8f82b07e544aa36062cccb07d51, type: 3}
+      propertyPath: useBush
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4774011425007838922, guid: b009c8f82b07e544aa36062cccb07d51, type: 3}
       propertyPath: m_RootOrder
       value: 6
