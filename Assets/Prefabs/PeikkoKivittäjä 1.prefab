@@ -186,7 +186,7 @@ MonoBehaviour:
   stone: {fileID: 4774011424386105641}
   player: {fileID: 0}
   attackCooldown: 1
-  stoneSpeed: 50
+  stoneSpeed: 40
   useBush: 1
   activePeikko: 0
   bushSpriteRenderer: {fileID: 0}
