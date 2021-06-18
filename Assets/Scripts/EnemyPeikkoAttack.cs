@@ -26,6 +26,8 @@ public class EnemyPeikkoAttack : MonoBehaviour
     public Animator animator;
     private int attackDirection;
     EnemyHealth enemyHealth;
+    private GameObject soundManager;
+    private AudioSource audioSource;
 
 
 
@@ -34,6 +36,9 @@ private void Start() {
     prb = GetComponent<Rigidbody2D>();
     spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     enemyHealth = GetComponent<EnemyHealth>();
+    audioSource = GetComponent<AudioSource>();
+
+
     attackCooldownd = attackCooldown;
     attackCooldown = 0;
     if (useBush==true)
@@ -90,7 +95,7 @@ private void Update()
                 animator.SetTrigger("Hyppy");
             }
             //StartCoroutine("BushJump");
-            Debug.Log("hyppy");
+            //Debug.Log("hyppy");
         }
         if(enemyFacingLeft)
         {
@@ -110,6 +115,7 @@ private void Update()
     if(enemyHealth.playDeathAnim==true)
     {
         canAttack=false;
+        audioSource.Play();
         Destroy(this.GetComponent<CapsuleCollider2D>());
         Destroy(this.GetComponent<Rigidbody2D>());
         Destroy(this.gameObject, 0.2f);

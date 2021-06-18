@@ -21,12 +21,15 @@ public class EnemyPeikkoMovement : MonoBehaviour
     private SpriteRenderer bushSpriteRenderer;
     public Animator animator;
     EnemyHealth enemyHealth;
+    private AudioSource AudioSrc;
+    private GameObject soundManager;
 
     private void Start() {
         prb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
         enemyHealth = GetComponent<EnemyHealth>();
+        AudioSrc = GetComponent<AudioSource>();
 
 
         if(useBush==true)
@@ -62,9 +65,11 @@ public class EnemyPeikkoMovement : MonoBehaviour
         if(enemyHealth.playDeathAnim==true)
         {
             state = PeikkoState.Hiding;
+            AudioSrc.Play();
             Destroy(this.GetComponent<CapsuleCollider2D>());
             Destroy(this.GetComponent<Rigidbody2D>());
             Destroy(this.gameObject, 0.2f);
+
             animator.SetTrigger("Death");
         }
 

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
-    public static AudioClip bearClaw, enemyHit, Jump, Landing, FootStep, playerHit, pitFall, respawnJiggle, ForestFootStep;
+    public static AudioClip bearClaw, enemyHit, Jump, Landing, FootStep, playerHit, pitFall, respawnJiggle, ForestFootStep, BearTransf, CommonButton, PicChangeSound, RNTDeath, RunningDeath,StartButtonSound;
     public static AudioSource audioSrc;
     public AudioMixer musicMixer;
     public Slider musicSlider;
@@ -23,6 +23,14 @@ public class SoundManager : MonoBehaviour
         pitFall = Resources.Load<AudioClip>("pit_fall");
         respawnJiggle = Resources.Load<AudioClip>("respawn_jiggle");
         ForestFootStep = Resources.Load<AudioClip>("forestbed_footstep");
+        BearTransf = Resources.Load<AudioClip>("bear-transformation");
+        CommonButton = Resources.Load<AudioClip>("common-button-sound");
+        PicChangeSound = Resources.Load<AudioClip>("pictures");
+        RNTDeath = Resources.Load<AudioClip>("rockntroll_death");
+        RunningDeath = Resources.Load<AudioClip>("runningtroll_death");
+        StartButtonSound = Resources.Load<AudioClip>("start-button-sound");
+
+
 
         audioSrc = GetComponent<AudioSource>();
 

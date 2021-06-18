@@ -256,6 +256,7 @@ public class playerMovement : MonoBehaviour
     IEnumerator BearBuff()
     {
         //Debug.Log("Bear buff"); Karhu päälle
+        soundManager.GetComponent<SoundManager>().PlayClipAt(SoundManager.BearTransf,new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
         bearBuffActive = true;
         animator.SetTrigger("BearTrigger");
         animator.SetBool("Bear", true);
@@ -366,7 +367,7 @@ public class playerMovement : MonoBehaviour
             {
                 //SoundManager.PlaySound("Landing");
                 //AudioSource.PlayClipAtPoint(SoundManager.Landing, new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
-                Debug.Log("landing sound");
+                //Debug.Log("landing sound");
                 soundManager.GetComponent<SoundManager>().PlayClipAt(SoundManager.Landing,new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
                 canplaylandingsound = false;
             }

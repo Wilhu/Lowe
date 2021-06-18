@@ -8,10 +8,10 @@ public class PuskaAnim : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other) {
         if(other.tag=="Enemy")
         {
-            Debug.Log("Enemy alueella");
+            //Debug.Log("Enemy alueella");
             if(other.GetComponent<EnemyPeikkoMovement>() == null)
             {
-                Debug.Log("peikko attack skripti");
+                //Debug.Log("peikko attack skripti");
                 EnemyPeikkoAttack Enemyscript = other.GetComponent<EnemyPeikkoAttack>();
                 if(Enemyscript.activePeikko==true)
                 {
@@ -20,10 +20,10 @@ public class PuskaAnim : MonoBehaviour
             }
             else
             {
-                Debug.Log("peikko move skripti");
+                //Debug.Log("peikko move skripti");
                 other.GetComponent<EnemyPeikkoMovement>();
                 EnemyPeikkoMovement Enemyscript = other.GetComponent<EnemyPeikkoMovement>();
-                Debug.Log(Enemyscript.activePeikko);
+                //Debug.Log(Enemyscript.activePeikko);
                 if(Enemyscript.activePeikko==true)
                 {
                     animator.SetBool("PuskastaHypätty", true);

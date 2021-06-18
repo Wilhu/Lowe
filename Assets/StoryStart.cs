@@ -9,10 +9,12 @@ public class StoryStart : MonoBehaviour
     private Image ImageComp;
     public Sprite[] StoryImages;
     private int i = 0;
+    private AudioSource audioSource;
 
     private void Start() {
         ImageComp = GetComponentInChildren<Image>();
         Debug.Log(StoryImages.Length);
+        audioSource = GetComponent<AudioSource>();
     }
     private void OnEnable() {
         if(PlayerPrefs.GetInt("CinematicStart")==0)
@@ -28,8 +30,9 @@ public class StoryStart : MonoBehaviour
             ImageComp.sprite = StoryImages[i];
             if(i<StoryImages.Length-1)
             {
+                audioSource.Play();
                 i++;
-                Debug.Log(i);
+                //Debug.Log(i);
             }
             else //if(i == StoryImages.Length)
             {

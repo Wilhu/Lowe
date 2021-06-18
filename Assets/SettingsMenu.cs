@@ -7,6 +7,8 @@ public class SettingsMenu : MonoBehaviour
 {
     public GameObject settingsMenu;
     private Scene cScene;
+    public AudioSource audioSource;
+    public AudioClip buttonSound;
     public void Back()
     {
         //GameObject.Find("SettingsMenu").SetActive(false);
@@ -20,5 +22,11 @@ public class SettingsMenu : MonoBehaviour
     }
     private void Start() {
         cScene = SceneManager.GetActiveScene();
+    }
+
+    public void ButtonSound()
+    {
+        audioSource.clip = buttonSound;
+        audioSource.Play();
     }
 }
