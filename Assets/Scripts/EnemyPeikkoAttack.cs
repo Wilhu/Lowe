@@ -25,6 +25,7 @@ public class EnemyPeikkoAttack : MonoBehaviour
     private SpriteRenderer bushSpriteRenderer;
     public Animator animator;
     private int attackDirection;
+    EnemyHealth enemyHealth;
 
 
 
@@ -32,6 +33,7 @@ public class EnemyPeikkoAttack : MonoBehaviour
 private void Start() {
     prb = GetComponent<Rigidbody2D>();
     spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    enemyHealth = GetComponent<EnemyHealth>();
     attackCooldownd = attackCooldown;
     attackCooldown = 0;
     if (useBush==true)
@@ -104,6 +106,14 @@ private void Update()
             //StartCoroutine("Attack");
         }
         //Debug.Log(("player detected right"));
+    }
+    if(enemyHealth.playDeathAnim==true)
+    {
+        canAttack=false;
+        Destroy(this.GetComponent<CapsuleCollider2D>());
+        Destroy(this.GetComponent<Rigidbody2D>());
+        Destroy(this.gameObject, 0.2f);
+        animator.SetTrigger("Death");
     }
 }
 

@@ -4596,6 +4596,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 257906113, guid: aca870a7a965fda42aa27f6bd9e7d3a8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 896865692, guid: aca870a7a965fda42aa27f6bd9e7d3a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.05
@@ -4606,7 +4610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 80448085805992842, guid: aca870a7a965fda42aa27f6bd9e7d3a8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 62.07
+      value: 71.3
       objectReference: {fileID: 0}
     - target: {fileID: 80448085805992842, guid: aca870a7a965fda42aa27f6bd9e7d3a8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4648,10 +4652,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PeikkoJuokseva
       objectReference: {fileID: 0}
+    - target: {fileID: 80448086777369475, guid: aca870a7a965fda42aa27f6bd9e7d3a8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 80448086777369500, guid: aca870a7a965fda42aa27f6bd9e7d3a8, type: 3}
       propertyPath: useBush
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 80448086777369500, guid: aca870a7a965fda42aa27f6bd9e7d3a8, type: 3}
+      propertyPath: deathSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 044f6f595c186e14d8afd9ad4c231feb, type: 3}
     - target: {fileID: 80448086777369500, guid: aca870a7a965fda42aa27f6bd9e7d3a8, type: 3}
       propertyPath: bushSpriteRenderer
       value: 
@@ -4976,11 +4988,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4774011425007838922, guid: b009c8f82b07e544aa36062cccb07d51, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.6
+      value: -18.1
       objectReference: {fileID: 0}
     - target: {fileID: 4774011425007838922, guid: b009c8f82b07e544aa36062cccb07d51, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.5
+      value: 13.7
       objectReference: {fileID: 0}
     - target: {fileID: 4774011425007838922, guid: b009c8f82b07e544aa36062cccb07d51, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5033,7 +5045,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7365707472061689403, guid: 32f0284e42435a948a9b8771127004bf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -61.2
+      value: 118.4
       objectReference: {fileID: 0}
     - target: {fileID: 7365707472061689403, guid: 32f0284e42435a948a9b8771127004bf, type: 3}
       propertyPath: m_LocalPosition.y

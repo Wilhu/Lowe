@@ -6,14 +6,16 @@ public class EnemyHealth : MonoBehaviour
 {   
     [SerializeField] private int health = 1;
     [SerializeField] private int damage;
+    public bool playDeathAnim = false;
 
     public int eHealth
     {
         get{return health;}
         set{health = value; 
-        if(health == 0)
+        if(health <= 0)
             {
-            Destroy(gameObject);
+                playDeathAnim = true;
+            //Destroy(gameObject);
             }
         }
     }

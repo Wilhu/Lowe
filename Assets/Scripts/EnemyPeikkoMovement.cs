@@ -20,11 +20,14 @@ public class EnemyPeikkoMovement : MonoBehaviour
     [SerializeField]
     private SpriteRenderer bushSpriteRenderer;
     public Animator animator;
+    EnemyHealth enemyHealth;
 
     private void Start() {
         prb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
+        enemyHealth = GetComponent<EnemyHealth>();
+
 
         if(useBush==true)
         {
@@ -41,7 +44,7 @@ public class EnemyPeikkoMovement : MonoBehaviour
 
     void Update()
     {
-        if(state == PeikkoState.Moving)
+        if(state == PeikkoState.Moving && enemyHealth.playDeathAnim == false)
         {
             transform.position = transform.position + new Vector3(moveDirection,0,0) * speed * Time.deltaTime;
             animator.SetBool("Running",true);
@@ -54,6 +57,15 @@ public class EnemyPeikkoMovement : MonoBehaviour
                 animator.SetTrigger("Hyppy");
                 //StartCoroutine("BushJump");
             }
+
+        }
+        if(enemyHealth.playDeathAnim==true)
+        {
+            state = PeikkoState.Hiding;
+            Destroy(this.GetComponent<CapsuleCollider2D>());
+            Destroy(this.GetComponent<Rigidbody2D>());
+            Destroy(this.gameObject, 0.2f);
+            animator.SetTrigger("Death");
         }
 
     }
