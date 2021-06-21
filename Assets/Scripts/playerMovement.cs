@@ -47,11 +47,14 @@ public class playerMovement : MonoBehaviour
     private float movement;
     private AudioSource audioSrc;
     public GameObject soundManager;
+    public float velocityY;
 
 
 
     void Awake() {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        //QualitySettings.vSyncCount = 0;  // VSync must be disabled
+        //Application.targetFrameRate = 60;
     }
 
     void Start()
@@ -74,6 +77,7 @@ public class playerMovement : MonoBehaviour
         mayJump += Time.deltaTime;
         jumpCD -= Time.deltaTime;
         attackCD -= Time.deltaTime;
+        velocityY = playerRigidbody.velocity.y;
 
         //Debug.Log("mayJump: " + mayJump);
         //Debug.Log("jumpCD: " + jumpCD);
@@ -85,7 +89,7 @@ public class playerMovement : MonoBehaviour
         Jump();
         MovePlayer();
 
-        playerRigidbody.gravityScale = 0;
+        playerRigidbody.gravityScale = 1;
         if (useGravity==0/* && mayJump > 0.1*/) playerRigidbody.AddForce(Physics.gravity * (playerRigidbody.mass * playerRigidbody.mass));
 
         if(BearCheck==true && Input.GetButton("Fire1"))
@@ -132,9 +136,9 @@ public class playerMovement : MonoBehaviour
                 soundManager.GetComponent<SoundManager>().PlayClipAt(SoundManager.Jump,new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
                 animator.SetTrigger("JumpTrigger");
                 jumpCD = 0.5f;
-                playerRigidbody.velocity = new Vector2(0,0); //Vector3.zero;
+                //playerRigidbody.velocity = Vector2.zero; //Vector3.zero;
                 playerRigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
-
+                //playerRigidbody.AddForce(transform.up * jumpForce);
             }
         }
         if(IsGrounded())
@@ -159,7 +163,14 @@ public class playerMovement : MonoBehaviour
         }
     }
     private void MovePlayer()
-    {   
+    {
+        if(Input.GetButton("Horizontal"))
+        {
+            //playerRigidbody.MovePosition(transform.position + new Vector3(movement, 0, 0) * movementSpeed * Time.fixedDeltaTime);
+            Vector3 velocity = (transform.right * movement) * movementSpeed * Time.fixedDeltaTime;
+            velocity.y = playerRigidbody.velocity.y;
+            playerRigidbody.velocity = velocity;
+        }
         if(Input.GetButton("Horizontal") && IsGrounded())
         {
             SoundManager.PlaySound("forestbed_footstep");
@@ -174,7 +185,8 @@ public class playerMovement : MonoBehaviour
                 attackDirection = 10;
                 movementSpeed = movementSpeed / turnRate;
             }
-             movementSpeed = Mathf.Lerp(movementSpeed, movementSpeedMax, Input.GetAxis("Horizontal") * Time.deltaTime * acceleration);
+            //movementSpeed = Mathf.Lerp(movementSpeed, movementSpeedMax, Input.GetAxis("Horizontal") * Time.fixedDeltaTime * acceleration);
+            movementSpeed = Mathf.Lerp(movementSpeed, movementSpeedMax, movement * Time.fixedDeltaTime * acceleration);
             playerIsFacingRight = true;
             // Debug.Log("oikealle");
         }
@@ -186,21 +198,31 @@ public class playerMovement : MonoBehaviour
                 attackDirection = -10;
                 movementSpeed = movementSpeed / turnRate;
             }
-             movementSpeed = Mathf.Lerp(movementSpeed, movementSpeedMax, Input.GetAxis("Horizontal") * Time.deltaTime * -acceleration);
+            //movementSpeed = Mathf.Lerp(movementSpeed, movementSpeedMax, Input.GetAxis("Horizontal") * Time.fixedDeltaTime * -acceleration);
+            movementSpeed = Mathf.Lerp(movementSpeed, movementSpeedMax, movement * Time.fixedDeltaTime * -acceleration);
             playerIsFacingRight = false;
            //  Debug.Log("vasemmalle");
         }
         else
         {
-            movementSpeed = Mathf.Lerp(movementSpeed, 0, Time.deltaTime * deceleration);
+            //movementSpeed = Mathf.Lerp(movementSpeed, 0, Time.fixedDeltaTime * deceleration);
+            movementSpeed = Mathf.Lerp(movementSpeed, 0, Time.fixedDeltaTime * deceleration);
             // Debug.Log("paikallaan");
             // x = Mathf.Lerp(x, 0, Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed);
             //Debug.Log("Standing");
         }
-        transform.position = transform.position + new Vector3(movement, 0, 0) * movementSpeed * Time.deltaTime;
+        if(Mathf.Approximately(movementSpeed,movementSpeedMax))
+        {
+            movementSpeed=movementSpeedMax;
+        }
+        else if(movementSpeed<0.5)
+        {
+            movementSpeed=0;
+        }
+        //transform.position = transform.position + new Vector3(movement, 0, 0) * movementSpeed * Time.fixedDeltaTime;
+        //transform.position = transform.position + new Vector3(movement, 0, 0) * movementSpeed * Time.fixedDeltaTime;
         animator.SetFloat("Movement Speed", Mathf.Abs(movement));
 
-        //playerRigidbody.MovePosition(transform.position + new Vector3(movement, 0, 0) * movementSpeed * Time.deltaTime);
     }
 
     private bool IsGrounded()

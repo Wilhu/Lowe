@@ -234,9 +234,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d520984e3b497c84b9f33732f893086f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeedMax: 25
+  movementSpeedMax: 1000
   movementSpeed: 0
-  jumpForce: 620
+  jumpForce: 800
   acceleration: 1.5
   deceleration: 1.5
   turnRate: 1
@@ -259,6 +259,7 @@ MonoBehaviour:
   animator: {fileID: 101280085}
   invulnerable: 0
   soundManager: {fileID: 0}
+  velocityY: 0
 --- !u!61 &7365707472061689407
 BoxCollider2D:
   m_ObjectHideFlags: 0
