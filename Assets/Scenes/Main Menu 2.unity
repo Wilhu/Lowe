@@ -958,6 +958,8 @@ MonoBehaviour:
   audioSource: {fileID: 659035165}
   StartButtonClickSound: {fileID: 8300000, guid: 36908d72cbe984241914cdcb0f563d76, type: 3}
   controlsmenu: {fileID: 2138711674}
+  ControlsButton: {fileID: 1911501910}
+  SettingsButton: {fileID: 1370843512}
 --- !u!82 &659035165
 AudioSource:
   m_ObjectHideFlags: 0

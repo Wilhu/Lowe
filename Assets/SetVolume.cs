@@ -7,7 +7,7 @@ public class SetVolume : MonoBehaviour
 {
     public AudioMixer mixer;
 
-   /* private void Start() {
+    /*private void Start() {
         musicSlider.value = PlayerPrefs.GetFloat("Music", 0);
         mixer.SetFloat("MusicVol", Mathf.Log10(musicSlider.value) *20);
     }*/

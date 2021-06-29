@@ -854,7 +854,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 30
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -2850,6 +2850,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efd0ebd0a7797f84e9d7887f41e9eb74, type: 3}
+--- !u!1 &492574312 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7026802611382078385, guid: efd0ebd0a7797f84e9d7887f41e9eb74, type: 3}
+  m_PrefabInstance: {fileID: 492574311}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &502937088
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3293,7 +3298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6604210843166539997, guid: 8b37cd968296fb04bb645a2fa8779556, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.0010349
+      value: 1.08
       objectReference: {fileID: 0}
     - target: {fileID: 6604210843166539997, guid: 8b37cd968296fb04bb645a2fa8779556, type: 3}
       propertyPath: m_LocalScale.z
@@ -4032,7 +4037,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 30
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -4358,11 +4363,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 806645783943554990, guid: 68038d820e0041c48bf30d55a7bcb091, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 25.7
+      value: -257.7
       objectReference: {fileID: 0}
     - target: {fileID: 806645783943554990, guid: 68038d820e0041c48bf30d55a7bcb091, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -20.4
+      value: -11.5
       objectReference: {fileID: 0}
     - target: {fileID: 806645783943554990, guid: 68038d820e0041c48bf30d55a7bcb091, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4900,6 +4905,10 @@ PrefabInstance:
     - target: {fileID: 1997810959130130818, guid: cfaa1d02d9f80f847b006f559427d02b, type: 3}
       propertyPath: m_Name
       value: Asset - Lohkare6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3259634595121012202, guid: cfaa1d02d9f80f847b006f559427d02b, type: 3}
+      propertyPath: m_SurfaceArc
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4654122816365251701, guid: cfaa1d02d9f80f847b006f559427d02b, type: 3}
       propertyPath: m_RootOrder
@@ -5608,11 +5617,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 806645783943554990, guid: 68038d820e0041c48bf30d55a7bcb091, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 356.5
+      value: 26.6
       objectReference: {fileID: 0}
     - target: {fileID: 806645783943554990, guid: 68038d820e0041c48bf30d55a7bcb091, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -17.1
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 806645783943554990, guid: 68038d820e0041c48bf30d55a7bcb091, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6516,7 +6525,7 @@ PrefabInstance:
     - target: {fileID: 2368591737879928979, guid: ffbc83e51add82b469c2dde5537b66f4, type: 3}
       propertyPath: cameraObject
       value: 
-      objectReference: {fileID: 1794981959}
+      objectReference: {fileID: 492574312}
     - target: {fileID: 2368591737879928990, guid: ffbc83e51add82b469c2dde5537b66f4, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -6890,7 +6899,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 30
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -7232,11 +7241,6 @@ PrefabInstance:
       objectReference: {fileID: 375172511}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32f0284e42435a948a9b8771127004bf, type: 3}
---- !u!1 &1794981959 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5012361814401070321, guid: 32f0284e42435a948a9b8771127004bf, type: 3}
-  m_PrefabInstance: {fileID: 1794981958}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1794981960 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7365707472061689405, guid: 32f0284e42435a948a9b8771127004bf, type: 3}
@@ -7563,7 +7567,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 30
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -8331,7 +8335,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 30
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -8385,7 +8389,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 60
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1

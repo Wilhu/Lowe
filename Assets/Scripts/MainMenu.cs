@@ -9,10 +9,13 @@ public class MainMenu : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip StartButtonClickSound;
     public GameObject controlsmenu;
+    public GameObject ControlsButton;
+    public GameObject SettingsButton;
     FadeBlack fadeBlack;
 
     private void Start() {
         fadeBlack = GetComponent<FadeBlack>();
+
     }
     private void Update() {
         if(Input.GetKeyDown(KeyCode.Escape) && settingsmenu.activeInHierarchy)
@@ -23,6 +26,8 @@ public class MainMenu : MonoBehaviour
     public void PlayGame()
     {
         //Debug.Log("Starting...");
+        ControlsButton.SetActive(false);
+        SettingsButton.SetActive(false);
         StartCoroutine("StartGame");
 
     }

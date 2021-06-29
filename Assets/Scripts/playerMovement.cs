@@ -48,13 +48,16 @@ public class playerMovement : MonoBehaviour
     private AudioSource audioSrc;
     public GameObject soundManager;
     public float velocityY;
+    private Vector3 velocity;
+    private bool disableHorizontal = false;
 
 
 
     void Awake() {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        //QualitySettings.vSyncCount = 0;  // VSync must be disabled
-        //Application.targetFrameRate = 60;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+        QualitySettings.vSyncCount = 0;  // VSync must be disabled
+        Application.targetFrameRate = 60;
     }
 
     void Start()
@@ -100,6 +103,7 @@ public class playerMovement : MonoBehaviour
         }
         if(bearBuffActive && Input.GetButton("Fire2"))
         {
+            StartCoroutine(DisableMovement());
             BearAttack();
         }
         else
@@ -136,7 +140,7 @@ public class playerMovement : MonoBehaviour
                 soundManager.GetComponent<SoundManager>().PlayClipAt(SoundManager.Jump,new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
                 animator.SetTrigger("JumpTrigger");
                 jumpCD = 0.5f;
-                //playerRigidbody.velocity = Vector2.zero; //Vector3.zero;
+                playerRigidbody.velocity = Vector2.zero; //Vector3.zero;
                 playerRigidbody.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
                 //playerRigidbody.AddForce(transform.up * jumpForce);
             }
@@ -164,10 +168,10 @@ public class playerMovement : MonoBehaviour
     }
     private void MovePlayer()
     {
-        if(Input.GetButton("Horizontal"))
+        if(Input.GetButton("Horizontal") && disableHorizontal == false)
         {
             //playerRigidbody.MovePosition(transform.position + new Vector3(movement, 0, 0) * movementSpeed * Time.fixedDeltaTime);
-            Vector3 velocity = (transform.right * movement) * movementSpeed * Time.fixedDeltaTime;
+            velocity = (transform.right * movement) * movementSpeed * Time.fixedDeltaTime;
             velocity.y = playerRigidbody.velocity.y;
             playerRigidbody.velocity = velocity;
         }
@@ -278,6 +282,7 @@ public class playerMovement : MonoBehaviour
     IEnumerator BearBuff()
     {
         //Debug.Log("Bear buff"); Karhu päälle
+        playerRigidbody.velocity = Vector2.zero;
         soundManager.GetComponent<SoundManager>().PlayClipAt(SoundManager.BearTransf,new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
         bearBuffActive = true;
         animator.SetTrigger("BearTrigger");
@@ -324,9 +329,9 @@ public class playerMovement : MonoBehaviour
         //AudioSource.PlayClipAtPoint(SoundManager.bearClaw, new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
         soundManager.GetComponent<SoundManager>().PlayClipAt(SoundManager.bearClaw,new Vector3(playerRigidbody.transform.position.x,playerRigidbody.transform.position.y,playerRigidbody.transform.position.z));
         //transform.position = Vector2.Lerp(transform.position, transform.position + new Vector3(attackDirection,0), dashtime * Time.deltaTime);
-        playerRigidbody.velocity = Vector2.zero;
         animator.SetTrigger("AttackTrigger");
-        playerRigidbody.AddForce(new Vector2(attackDirection*dashPower,100),ForceMode2D.Impulse);
+        //playerRigidbody.velocity = Vector2.zero;
+        playerRigidbody.AddForce(new Vector2(velocity.x+attackDirection*dashPower,100),ForceMode2D.Impulse);
         //StartCoroutine(GravityOff());
         Collider2D[] result = Physics2D.OverlapCircleAll(gameObject.transform.position + new Vector3(attackDirection,0,0), 10f);
         
@@ -407,6 +412,12 @@ public class playerMovement : MonoBehaviour
             yield return new WaitForSeconds(0.15f);
         }
         invulnerable = false;
+    }
+    private IEnumerator DisableMovement()
+    {
+        disableHorizontal = true;
+        yield return new WaitForSeconds(0.25f);
+        disableHorizontal = false;
     }
 }
   

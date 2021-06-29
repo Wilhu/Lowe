@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1283711456439495583}
   - component: {fileID: 5022793656049789088}
   - component: {fileID: 1066131667119224243}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Asset - Puu1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1190653576283653566}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -63.030632, y: -408.5463, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 4.5764604, y: 4.5764604, z: 4.5764604}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -172,7 +172,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 30
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
