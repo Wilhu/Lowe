@@ -38,7 +38,7 @@ public class Parallax : MonoBehaviour
         fakePerspective = FindObjectOfType<FakePerspective>();
     }
 
-    void Update()
+    void LateUpdate()
     {
         UpdatePerspective();
     }
