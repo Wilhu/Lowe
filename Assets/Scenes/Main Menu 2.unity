@@ -2151,7 +2151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1349773373
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3911,6 +3911,8 @@ MonoBehaviour:
   settingsMenu: {fileID: 51989659}
   audioSource: {fileID: 1990775584}
   buttonSound: {fileID: 8300000, guid: ebe3383cc82374e4b96167e98452e236, type: 3}
+  mixerMusic: {fileID: 24100000, guid: d45251a07c52d0048b1bfaf05ecba3a8, type: 2}
+  mixerSounds: {fileID: 24100000, guid: ce2d31a364121c3448f4ef1a9f0534b6, type: 2}
 --- !u!82 &1990775584
 AudioSource:
   m_ObjectHideFlags: 0

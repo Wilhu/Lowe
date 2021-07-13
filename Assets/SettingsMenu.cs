@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class SettingsMenu : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class SettingsMenu : MonoBehaviour
     private Scene cScene;
     public AudioSource audioSource;
     public AudioClip buttonSound;
+    public AudioMixer mixerMusic;
+    public AudioMixer mixerSounds;
     public void Back()
     {
         //GameObject.Find("SettingsMenu").SetActive(false);
@@ -22,6 +25,8 @@ public class SettingsMenu : MonoBehaviour
     }
     private void Start() {
         cScene = SceneManager.GetActiveScene();
+        mixerMusic.SetFloat("MusicVol", Mathf.Log10(0.5f)*20);
+        mixerSounds.SetFloat("GameSoundVol", Mathf.Log10(0.5f)*20);
     }
 
     public void ButtonSound()

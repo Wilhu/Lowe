@@ -35,6 +35,9 @@ public class EndScene : MonoBehaviour
 
     public void ToMainMenu()
     {
+        Destroy(GameObject.Find("SettingsCanvas"));
+        Destroy(GameObject.Find("BackgroundMusic"));
+        Destroy(GameObject.Find("SoundManager"));
         SceneManager.LoadScene("Main Menu 2");
     }
 }

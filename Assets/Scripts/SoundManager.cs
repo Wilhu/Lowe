@@ -34,9 +34,9 @@ public class SoundManager : MonoBehaviour
 
         audioSrc = GetComponent<AudioSource>();
 
-        musicSlider.value = PlayerPrefs.GetFloat("Music", 0);
+        musicSlider.value = PlayerPrefs.GetFloat("Music", 0.5f);
         musicMixer.SetFloat("MusicVol", Mathf.Log10(musicSlider.value) *20);
-        soundSlider.value = PlayerPrefs.GetFloat("Sound", 0);
+        soundSlider.value = PlayerPrefs.GetFloat("Sound", 0.5f);
         soundMixer.SetFloat("GameSoundVol", Mathf.Log10(musicSlider.value) *20);
     }
 

@@ -46,7 +46,8 @@ public class RespawnBox : MonoBehaviour
         for(int i = 0; i<respawnpositions.Count;i++)
         {
             Debug.Log(respawns[i]);
-        }  
+        }
+        ClosestSpawn = 0;  
     }
     void Update()
     {
